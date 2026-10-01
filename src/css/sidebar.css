@@ -1,0 +1,113 @@
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    flex-shrink: 0;
+    background-color: #0A1020;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 20px;
+    border-right: 1px solid #25314A;
+}
+
+.sidebar__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 20px;
+    height: 100%;
+}
+
+.sidebar__content__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar__content__logo h1 {
+    font-size: 24px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: bold;
+    background-color: #748BFF;
+    border-radius: 8px;
+}
+
+.sidebar__content__list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar__content__list__item {
+    padding: 14px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #8A93A6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar__content__list__item svg {
+    flex-shrink: 0;
+}
+
+.sidebar__content__list__item p {
+    font-size: 15px;
+}
+
+.sidebar__content__list__item:hover {
+    background-color: #1A2856;
+}
+
+.sidebar__item__active {
+    background-color: #1A2856;
+    color: white;
+}
+
+.sidebar__content__footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #6C4FD1;
+    border-radius: 50%;
+}
+
+.sidebar__content__footer__texts h1 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sidebar__content__footer__texts p {
+    font-size: 12px;
+    color: #8A93A6;
+    margin-top: 2px;
+}

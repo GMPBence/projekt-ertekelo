@@ -1,11 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
-<body>
-    
+
+<body data-page="projects">
+    <div class="sidebar__overlay" id="sidebarOverlay"></div>
+    <div class="layout">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar__content">
+                <div class="sidebar__content__logo">
+                    <div class="logo">É</div>
+                    <h1>értékelő</h1>
+                </div>
+                <div class="sidebar__content__list">
+                    <div class="sidebar__content__list__item" id="sidebar__projects">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                        <p>Projektek</p>
+                    </div>
+                    <div class="sidebar__content__list__item" id="sidebar__something">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+                        <p>Valami ide</p>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar__content__footer">
+                <div class="avatar">A</div>
+                <div class="sidebar__content__footer__texts">
+                    <h1>Admin</h1>
+                    <p>Adminisztrátor</p>
+                </div>
+            </div>
+        </div>
+
+        <header class="mobile-topbar">
+            <div class="mobile-topbar__logo">
+                <div class="logo">É</div>
+                <h1>értékelő</h1>
+            </div>
+            <button class="mobile-topbar__toggle" id="menuToggle" aria-label="Menü megnyitása">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+        </header>
+
+        <main class="content">
+            <span class="content__breadcrumb">Animáció - csapatmunka</span>
+            <div class="content__heading">
+                <div>
+                    <h2>Projektek</h2>
+                    <p>Beadások áttekintése és következetes értékelése egy helyen.</p>
+                </div>
+                <button class="btn btn--primary" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Új projekt
+                </button>
+            </div>
+
+            <section class="stats" id="statsList"></section>
+
+            <section class="submissions">
+                <div class="submissions__header">
+                    <div class="submissions__title">
+                        <h3>Legutóbbi beadások</h3>
+                        <p id="submissionsCount">Betöltés…</p>
+                    </div>
+                </div>
+
+                <div class="submissions__table" id="submissionsTable">
+                    <div class="submissions__row submissions__row--head">
+                        <span class="submissions__cell submissions__cell--project-label">Projekt</span>
+                        <span class="submissions__cell submissions__cell--status">Státusz</span>
+                        <span class="submissions__cell submissions__cell--grade">Jegy</span>
+                        <span class="submissions__cell submissions__cell--action"></span>
+                    </div>
+                    <div id="submissionsRows"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+     <script type="module" src="/src/js/projects.js"></script>
+     <script type="module" src="/src/js/sidebar.js"></script>
+     <script type="module" src="/src/js/mobileMenu.js"></script>
+     <script type="module" src="/src/js/projectsOverview.js"></script>
 </body>
+
 </html>
