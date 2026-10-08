@@ -70,9 +70,9 @@
                 </a>
                 <div class="projectbar">
                     <div class="project-info">
-                        
-                            <span class="badge badge--green">Értékelve</span>
-                        
+
+                        <span class="badge badge--green">Értékelve</span>
+
                         <h1 id="project_name">Interaktív történelmi térkép</h1>
                         <p>Kovacs Bence</p>
                     </div>
@@ -92,11 +92,19 @@
                         <span class="decoration-span decoration--yellow"></span>
                         <span class="decoration-span decoration--green"></span>
                     </div>
-                    <input type="text" placeholder="https://openfront.io/">
+                    <input id="websiteUrl" type="text" placeholder="https://openfront.io/">
                     <div class="controls">
-                        <img src="public/refresh-cw.png" alt="">
-                        <img src="public/Vector.png" alt="">
+                        <button class="project-viewer__refresh" id="refreshButton" type="button"
+                            aria-label="Teljes képernyő">
+                            <img src="/public/refresh-cw.png" alt="Teljes képernyő">
+                        </button>
+
+                        <button class="project-viewer__fullscreen" id="fullscreenButton" type="button"
+                            aria-label="Teljes képernyő">
+                            <img src="/public/Vector.png" alt="">
+                        </button>
                     </div>
+
 
                 </div>
                 <iframe src="https://botond-cyber.github.io/josda-project/" frameborder="0"></iframe>

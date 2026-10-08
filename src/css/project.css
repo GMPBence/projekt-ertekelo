@@ -147,6 +147,35 @@ a{
     
 }
 
+.project-viewer__refresh,
+.project-viewer__fullscreen{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.project-viewer__refresh img,
+.project-viewer__fullscreen img{
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.project-viewer:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+}
+
+.project-viewer:fullscreen iframe {
+    height: 100vh;
+}
+
 
 @media screen and (max-width:1100px){
     .navbar{
