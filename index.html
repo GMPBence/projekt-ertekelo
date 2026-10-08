@@ -1,63 +1,39 @@
 <!doctype html>
 <html lang="hu">
-
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bejelentkezés</title>
+  <link rel="stylesheet" href="/src/css/style.css" />
+  <title>Bejelentkezés – Értékelő</title>
 </head>
-
 <body>
   <div id="app">
-    <div class="container">
-      <div class="bal">
-        <div class="sidebar__content__logo">
-          <div class="logo">É</div>
-          <h1>értékelő</h1>
+    <main class="container">
+      <section class="bal" aria-labelledby="page-title">
+        <div class="sidebar__content__logo"><div class="logo" aria-hidden="true">É</div><span>értékelő</span></div>
+        <div class="title"><h1 id="page-title">Értékeld a projekteket egy helyen</h1></div>
+        <div class="text"><p>Letisztult tanári munkatér webfejlesztési projektek előnézetéhez, következetes értékeléséhez és lezárásához.</p></div>
+      </section>
+      <section class="jobb" aria-labelledby="login-title">
+        <div class="udv">
+          <h2 id="login-title">Üdv újra.</h2>
+          <p>Jelentkezzen be a projektértékelő felületre!</p>
         </div>
-        <div class="title">
-          <h1>Értékeld a projekteket egy helyen</h1>
-        </div>
-        <div class="text">
-          <p>Letisztult tanári munkatér webfejlesztési projektek előnézetéhez, következetes értékeléséhez és
-            lezárásához.</p>
-        </div>
-      </div>
-      <div class="jobb">
-        <div class="felso">
-          <div class="udv">
-            <h1>Üdv újra.</h1>
-            <p>Jelentkezzen be a projektértékelő felületre!</p>
-          </div>
-          <div class="email">
-            <p>Email vagy felhasználónév</p>
-            <input type="email" placeholder="Email vagy felhasználónév" />
-          </div>
-          <div class="password">
-            <p>Jelszó</p>
-            <input type="password" placeholder="Jelszó" />
-          </div>
-        </div>
-        <div class="login-button">
-          <div class="checkbox">
-            <input type="checkbox" id="remember-me" />
-            <label for="remember-me">Emlékezz rám</label>
-          </div>
-          <button><img src="/arrow-right.png" alt=""> Belépés</button>
-        </div>
-        <div class="hibas">
-
-        </div>
-        <div class="folyamatban">
-
-        </div>
-      </div>
-    </div>
-    <footer>Értékelő 2026 Tanári használatra</footer>
+        <form id="loginForm" data-api="/auth/login" data-redirect="./projects.html">
+          <div class="auth-field"><label for="loginEmail">Email</label><input id="loginEmail" name="email" type="email" autocomplete="email" required placeholder="pelda@iskola.hu" /></div>
+          <div class="auth-field"><label for="loginPassword">Jelszó</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Add meg a jelszavad" /></div>
+          <p class="auth-message" role="status" aria-live="polite"></p>
+          <div class="auth-actions"><button class="auth-primary" type="submit">Belépés <span aria-hidden="true">→</span></button></div>
+        </form>
+        <nav class="auth-links" aria-label="Fiókműveletek">
+          <a href="./register.html">Új fiók létrehozása</a>
+          <a href="./recover.html">Elfelejtetted a jelszavad?</a>
+        </nav>
+      </section>
+    </main>
+    <footer>Értékelő 2026 · Tanári használatra</footer>
   </div>
-
-  <script type="module" src="/src/js/main.js"></script>
+  <script type="module" src="/src/js/script.js"></script>
 </body>
-
 </html>

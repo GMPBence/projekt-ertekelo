@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Projektek – Értékelő</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
 </head>
 
 <body data-page="projects">
-    <div class="sidebar__overlay" id="sidebarOverlay"></div>
+    <input class="sidebar-toggle" id="sidebarMenuToggle" type="checkbox" aria-label="Menü megnyitása">
+    <label class="sidebar__overlay" id="sidebarOverlay" for="sidebarMenuToggle" aria-label="Menü bezárása"></label>
     <div class="layout">
         <div class="sidebar" id="sidebar">
             <div class="sidebar__content">
@@ -18,22 +20,19 @@
                     <h1>értékelő</h1>
                 </div>
                 <div class="sidebar__content__list">
-                    <div class="sidebar__content__list__item" id="sidebar__projects">
+                    <a class="sidebar__content__list__item sidebar__item__active" href="./projects.html" aria-current="page">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
                         <p>Projektek</p>
-                    </div>
-                    <div class="sidebar__content__list__item" id="sidebar__something">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
-                        <p>Valami ide</p>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="sidebar__content__footer">
                 <div class="avatar">A</div>
                 <div class="sidebar__content__footer__texts">
-                    <h1>Admin</h1>
-                    <p>Adminisztrátor</p>
+                <h1 id="currentUsername">Felhasználó</h1>
+                <p>Értékelő</p>
                 </div>
+                <a class="logout-button" href="./index.html" data-logout>Kilépés</a>
             </div>
         </div>
 
@@ -42,9 +41,9 @@
                 <div class="logo">É</div>
                 <h1>értékelő</h1>
             </div>
-            <button class="mobile-topbar__toggle" id="menuToggle" aria-label="Menü megnyitása">
+            <label class="mobile-topbar__toggle" for="sidebarMenuToggle">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            </button>
+            </label>
         </header>
 
         <main class="content">
@@ -54,11 +53,36 @@
                     <h2>Projektek</h2>
                     <p>Beadások áttekintése és következetes értékelése egy helyen.</p>
                 </div>
-                <button class="btn btn--primary" type="button">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    Új projekt
+                <button class="btn btn--primary" id="openProjectDialog" type="button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        Új projekt
                 </button>
             </div>
+
+            <dialog class="project-dialog" id="projectDialog" aria-labelledby="projectDialogTitle">
+                <form class="project-dialog__form" id="newProjectForm" data-api="/projects" data-reload-on-success>
+                    <div class="project-dialog__header">
+                        <div>
+                            <h2 id="projectDialogTitle">Új projekt</h2>
+                            <p>Add meg az új beadás adatait.</p>
+                        </div>
+                        <button class="project-dialog__close" type="button" aria-label="Ablak bezárása" data-close-project-dialog>×</button>
+                    </div>
+                    <label for="projectTitle">Projekt neve</label>
+                    <input id="projectTitle" name="title" maxlength="255" required autofocus />
+                    <label for="projectAuthors">Készítők</label>
+                    <input id="projectAuthors" name="authors" maxlength="500" required placeholder="Nevek vesszővel elválasztva" />
+                    <label for="projectUrl">Projekt webcíme</label>
+                    <input id="projectUrl" name="website_url" type="url" maxlength="2048" placeholder="https://pelda.hu" />
+                    <label for="projectDescription">Leírás</label>
+                    <textarea id="projectDescription" name="description" rows="4" maxlength="5000"></textarea>
+                    <p class="auth-message" role="status" aria-live="polite"></p>
+                    <div class="project-dialog__actions">
+                        <button class="btn btn--outline" type="button" data-close-project-dialog>Mégse</button>
+                        <button class="btn btn--primary project-dialog__submit" type="submit">Projekt hozzáadása</button>
+                    </div>
+                </form>
+            </dialog>
 
             <section class="stats" id="statsList"></section>
 
@@ -78,15 +102,24 @@
                         <span class="submissions__cell submissions__cell--action"></span>
                     </div>
                     <div id="submissionsRows"></div>
+                    <template id="projectRowTemplate">
+                        <div class="submissions__row">
+                            <div class="submissions__project">
+                                <h4></h4>
+                                <p></p>
+                            </div>
+                            <div class="submissions__cell submissions__cell--status"><span class="badge"></span></div>
+                            <div class="submissions__cell submissions__cell--grade"><span class="grade"></span></div>
+                            <div class="submissions__cell submissions__cell--action"><a class="btn btn--outline"></a></div>
+                            <a class="submissions__mobile-link"></a>
+                        </div>
+                    </template>
                 </div>
             </section>
         </main>
     </div>
 
-     <script type="module" src="/src/js/projects.js"></script>
-     <script type="module" src="/src/js/sidebar.js"></script>
-     <script type="module" src="/src/js/mobileMenu.js"></script>
-     <script type="module" src="/src/js/projectsOverview.js"></script>
+    <script type="module" src="/src/js/script.js"></script>
 </body>
 
 </html>
