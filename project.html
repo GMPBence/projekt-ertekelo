@@ -77,38 +77,135 @@
                         <p>Kovacs Bence</p>
                     </div>
 
-                    <div class="swich">
-                        <p class="swich--active">Előnézet</p>
-                        <p>Értékelés</p>
+                    <div class="swich" role="tablist" aria-label="Projekt nézetválasztó">
+                        <p class="swich--active" data-view="preview" role="tab" aria-selected="true">Előnézet</p>
+                        <p data-view="evaluation" role="tab" aria-selected="false">Értékelés</p>
                     </div>
 
                 </div>
             </div>
 
-            <div class="project-viewer">
-                <div class="project-viewer-header">
-                    <div class="decoration">
-                        <span class="decoration-span decoration--red"></span>
-                        <span class="decoration-span decoration--yellow"></span>
-                        <span class="decoration-span decoration--green"></span>
+            <div id="previewSection" class="project-section">
+                <div class="project-viewer">
+                    <div class="project-viewer-header">
+                        <div class="decoration">
+                            <span class="decoration-span decoration--red"></span>
+                            <span class="decoration-span decoration--yellow"></span>
+                            <span class="decoration-span decoration--green"></span>
+                        </div>
+                        <input id="websiteUrl" type="text" placeholder="https://példaweboldal/">
+                        <div class="controls">
+                            <button class="project-viewer__refresh" id="refreshButton" type="button"
+                                aria-label="Teljes képernyő">
+                                <img src="/public/refresh-cw.png" alt="Teljes képernyő">
+                            </button>
+
+                            <button class="project-viewer__fullscreen" id="fullscreenButton" type="button"
+                                aria-label="Teljes képernyő">
+                                <img src="/public/Vector.png" alt="">
+                            </button>
+                        </div>
+
+
                     </div>
-                    <input id="websiteUrl" type="text" placeholder="https://openfront.io/">
-                    <div class="controls">
-                        <button class="project-viewer__refresh" id="refreshButton" type="button"
-                            aria-label="Teljes képernyő">
-                            <img src="/public/refresh-cw.png" alt="Teljes képernyő">
-                        </button>
-
-                        <button class="project-viewer__fullscreen" id="fullscreenButton" type="button"
-                            aria-label="Teljes képernyő">
-                            <img src="/public/Vector.png" alt="">
-                        </button>
-                    </div>
-
-
+                    <iframe src="https://botond-cyber.github.io/josda-project/" frameborder="0"></iframe>
                 </div>
-                <iframe src="https://botond-cyber.github.io/josda-project/" frameborder="0"></iframe>
             </div>
+
+            <section id="evaluationSection" class="project-section hidden" aria-label="Értékelés">
+                <div class="evaluation-layout">
+                    <div class="evaluation-panel">
+                        <div class="question-card">
+                            <div class="question-copy">
+                                <p>Mennyire illeszkedik a projekt a kiadott témához?</p>
+                                <small>A tartalom relevanciája és a feladatnak való megfelelés alapján értékelhető.</small>
+                            </div>
+                            <div class="rating-row" data-question="theme">
+                                <button type="button" class="rating-btn">1</button>
+                                <button type="button" class="rating-btn">2</button>
+                                <button type="button" class="rating-btn">3</button>
+                                <button type="button" class="rating-btn">4</button>
+                                <button type="button" class="rating-btn">5</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <div class="question-copy">
+                                <p>Mennyire tiszta és vizuálisan igényes a design?</p>
+                                <small>Harmonikus, olvasható és esztétikus megjelenés.</small>
+                            </div>
+                            <div class="rating-row" data-question="design">
+                                <button type="button" class="rating-btn">1</button>
+                                <button type="button" class="rating-btn">2</button>
+                                <button type="button" class="rating-btn">3</button>
+                                <button type="button" class="rating-btn">4</button>
+                                <button type="button" class="rating-btn">5</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <div class="question-copy">
+                                <p>Mennyire jó a CSS animációk?</p>
+                                <small>Az interakciók, mozgások és általános reakcióképesség alapján.</small>
+                            </div>
+                            <div class="rating-row" data-question="animations">
+                                <button type="button" class="rating-btn">1</button>
+                                <button type="button" class="rating-btn">2</button>
+                                <button type="button" class="rating-btn">3</button>
+                                <button type="button" class="rating-btn">4</button>
+                                <button type="button" class="rating-btn">5</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <div class="question-copy">
+                                <p>Mennyire jól használható a JavaScript segítségével?</p>
+                                <small>Az interaktivitás, logika és funkcionalitás alapján.</small>
+                            </div>
+                            <div class="rating-row" data-question="javascript">
+                                <button type="button" class="rating-btn">1</button>
+                                <button type="button" class="rating-btn">2</button>
+                                <button type="button" class="rating-btn">3</button>
+                                <button type="button" class="rating-btn">4</button>
+                                <button type="button" class="rating-btn">5</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card question-card--full">
+                            <div class="question-copy">
+                                <p>Szöveges visszajelzés</p>
+                                <small>A projekt erősségei és fejlesztési lehetőségei.</small>
+                            </div>
+                            <textarea rows="5" placeholder="A tárlat általános értékelése, a jövőben javítandó elemek..."></textarea>
+                        </div>
+                    </div>
+
+                    <aside class="evaluation-sidebar">
+                        <div class="evaluation-sidebar__card">
+                            <h3>Érdemjegy</h3>
+                            <p class="evaluation-grade-hint">A részpontszámok alapján javasolt: <strong id="averageScore">4</strong></p>
+
+                            <div class="evaluation-sidebar__rating">
+                                <div class="evaluation-sidebar__rating-row">
+                                    <button type="button" class="mini-rating-btn" aria-pressed="false">1</button>
+                                    <button type="button" class="mini-rating-btn" aria-pressed="false">2</button>
+                                    <button type="button" class="mini-rating-btn" aria-pressed="false">3</button>
+                                    <button type="button" class="mini-rating-btn active" aria-pressed="true">4</button>
+                                    <button type="button" class="mini-rating-btn" aria-pressed="false">5</button>
+                                </div>
+                            </div>
+
+                            <div class="criteria">
+                                <div><span>Kritériumátlag</span><strong><span id="criteriaScore">0.0</span> / 5</strong></div>
+                                <div><span>Közzététel</span><strong class="evaluation-visibility">Még nem látható</strong></div>
+                            </div>
+
+                            <button type="button" class="evaluation-submit"><span aria-hidden="true">✓</span> Értékelés közzététele</button>
+                            <button type="button" class="evaluation-draft">Mentés vázlatként</button>
+                        </div>
+                    </aside>
+                </div>
+            </section>
 
 
         </main>

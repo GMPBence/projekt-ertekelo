@@ -46,6 +46,7 @@ p {
 .jobb {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 30%;
   padding: 20px;
   background-color: #0A1020;
@@ -132,15 +133,57 @@ p {
   color: white;
   border: none;
   padding: 20px 0;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   width: 100%;
 }
 
-.login-button input {
-  color: #748bff;
-  border: none;
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
   cursor: pointer;
+  background-color: #fff;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:hover {
+  border-color: #748bff;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #748bff;
+  border-color: #748bff;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+label {
+  color: #8A93A6;
+  font-size: 18px;
 }
 
 footer {
