@@ -64,24 +64,42 @@
         </header>
 
         <main class="content">
-            <div class="back"><img src="/arrow-left.png" alt="Arrow Left">
-                <p>Vissza a projektekhez</p>
-            </div>
-
-            <div>
-                <div>
-                    <div class="submissions__cell submissions__cell--status">
-                        <span class="badge badge--green">Értékelve</span>
+            <div class="navbar">
+                <a href="/projekt-ertekelo/projects.html" class="back"><img src="/arrow-left.png" alt="Arrow Left">
+                    <p>Vissza a projektekhez</p>
+                </a>
+                <div class="projectbar">
+                    <div class="project-info">
+                        
+                            <span class="badge badge--green">Értékelve</span>
+                        
+                        <h1 id="project_name">Interaktív történelmi térkép</h1>
+                        <p>Kovacs Bence</p>
                     </div>
-                    <h1 id="project_name">Interaktív történelmi térkép</h1>
-                    <p>Kovacs Bence</p>
-                </div>
-                <div>
-                    <div>
-                        <p>Előnézet</p>
+
+                    <div class="swich">
+                        <p class="swich--active">Előnézet</p>
                         <p>Értékelés</p>
                     </div>
+
                 </div>
+            </div>
+
+            <div class="project-viewer">
+                <div class="project-viewer-header">
+                    <div class="decoration">
+                        <span class="decoration-span decoration--red"></span>
+                        <span class="decoration-span decoration--yellow"></span>
+                        <span class="decoration-span decoration--green"></span>
+                    </div>
+                    <input type="text" placeholder="https://openfront.io/">
+                    <div class="controls">
+                        <img src="public/refresh-cw.png" alt="">
+                        <img src="public/Vector.png" alt="">
+                    </div>
+
+                </div>
+                <iframe src="https://botond-cyber.github.io/josda-project/" frameborder="0"></iframe>
             </div>
 
 
