@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="hu">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -7,28 +8,45 @@
   <link rel="stylesheet" href="/src/css/style.css" />
   <title>Regisztráció – Értékelő</title>
 </head>
+
 <body>
   <div id="app">
     <main class="container">
       <section class="bal" aria-labelledby="page-title">
-        <div class="sidebar__content__logo"><div class="logo" aria-hidden="true">É</div><span>értékelő</span></div>
-        <div class="title"><h1 id="page-title">Hozz létre egy fiókot</h1></div>
-        <div class="text"><p>Regisztrálj, hogy egy helyen kezelhesd és értékelhesd a projekteket.</p></div>
+        <div class="sidebar__content__logo">
+          <div class="logo" aria-hidden="true">É</div><span>értékelő</span>
+        </div>
+        <div class="title">
+          <h1 id="page-title">Hozz létre egy fiókot</h1>
+        </div>
+        <div class="text">
+          <p>Regisztrálj, hogy egy helyen kezelhesd és értékelhesd a projekteket.</p>
+        </div>
       </section>
       <section class="jobb" aria-labelledby="register-title">
-        <div class="udv"><h2 id="register-title">Regisztráció</h2><p>Add meg a fiók létrehozásához szükséges adatokat.</p></div>
+        <div class="udv">
+          <h2 id="register-title">Regisztráció</h2>
+          <p>Add meg a fiók létrehozásához szükséges adatokat.</p>
+        </div>
         <form id="registerForm" data-api="/auth/register" data-redirect="./projects.html">
-          <div class="auth-field"><label for="registerUsername">Felhasználónév</label><input id="registerUsername" name="username" type="text" autocomplete="username" minlength="3" maxlength="50" required placeholder="Felhasználónév" /></div>
-          <div class="auth-field"><label for="registerEmail">Email</label><input id="registerEmail" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="pelda@iskola.hu" /></div>
-          <div class="auth-field"><label for="registerPassword">Jelszó (8–72 bájt)</label><input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="Válassz egy jelszót" /></div>
-          <label class="checkbox"><input type="checkbox" required />Elfogadom az Általános Szerződési Feltételeket (ÁSZF).</label>
-          <label class="checkbox"><input type="checkbox" required />Elfogadom az Adatkezelési Tájékoztatót.</label>
+          <div class="auth-field">
+            <label for="registerUsername">Felhasználónév</label>
+            <input id="registerUsername" name="username" type="text" autocomplete="username" minlength="3" maxlength="50" required placeholder="Felhasználónév" />
+          </div>
+          <div class="auth-field">
+            <label for="registerEmail">Email</label>
+            <input id="registerEmail" name="email"type="email" autocomplete="email" maxlength="254" required placeholder="pelda@iskola.hu" />
+          </div>
+          <div class="auth-field">
+            <label for="registerPassword">Jelszó (8–72 karakter)</label>
+            <input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="72" required placeholder="Válassz egy jelszót" /></div>
+          <label class="checkbox"><input type="checkbox" required /><p>Elfogadom az <a href="/projekt-ertekelo/aszf.pdf" target="_blank">Általános Szerződési Feltételeket</a> (ÁSZF).</p></label>
+          <label class="checkbox"><input type="checkbox" required /><p>Elfogadom az <a href="/projekt-ertekelo/at.pdf" target="_blank">Adatkezelési Tájékoztatót</a> (AT).</p></label>
           <p class="auth-message" role="status" aria-live="assertive"></p>
           <div class="auth-actions"><button class="auth-primary" type="submit">Regisztráció <span aria-hidden="true">→</span></button></div>
         </form>
         <nav class="auth-links" aria-label="Fiókműveletek">
           <a href="./index.html">Már van fiókod? Bejelentkezés</a>
-
         </nav>
       </section>
     </main>
@@ -36,4 +54,5 @@
   </div>
   <script type="module" src="/src/js/script.js"></script>
 </body>
+
 </html>

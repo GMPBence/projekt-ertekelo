@@ -20,8 +20,15 @@
                     <h1>értékelő</h1>
                 </div>
                 <div class="sidebar__content__list">
-                    <a class="sidebar__content__list__item sidebar__item__active" href="./projects.html" aria-current="page">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                    <a class="sidebar__content__list__item sidebar__item__active" href="./projects.html"
+                        aria-current="page">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                            <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                            <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                            <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                        </svg>
                         <p>Projektek</p>
                     </a>
                 </div>
@@ -29,8 +36,8 @@
             <div class="sidebar__content__footer">
                 <div class="avatar">A</div>
                 <div class="sidebar__content__footer__texts">
-                <h1 id="currentUsername">Felhasználó</h1>
-                <p>Értékelő</p>
+                    <h1 id="currentUsername">Felhasználó</h1>
+                    <p>Értékelő</p>
                 </div>
                 <a class="logout-button" href="./index.html" data-logout>Kilépés</a>
             </div>
@@ -42,7 +49,12 @@
                 <h1>értékelő</h1>
             </div>
             <label class="mobile-topbar__toggle" for="sidebarMenuToggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
             </label>
         </header>
 
@@ -54,8 +66,12 @@
                     <p>Beadások áttekintése és következetes értékelése egy helyen.</p>
                 </div>
                 <button class="btn btn--primary" id="openProjectDialog" type="button">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                        Új projekt
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    Új projekt
                 </button>
             </div>
 
@@ -66,20 +82,24 @@
                             <h2 id="projectDialogTitle">Új projekt</h2>
                             <p>Add meg az új beadás adatait.</p>
                         </div>
-                        <button class="project-dialog__close" type="button" aria-label="Ablak bezárása" data-close-project-dialog>×</button>
+                        <button class="project-dialog__close" type="button" aria-label="Ablak bezárása"
+                            data-close-project-dialog>×</button>
                     </div>
                     <label for="projectTitle">Projekt neve</label>
                     <input id="projectTitle" name="title" maxlength="255" required autofocus />
                     <label for="projectAuthors">Készítők</label>
-                    <input id="projectAuthors" name="authors" maxlength="500" required placeholder="Nevek vesszővel elválasztva" />
+                    <input id="projectAuthors" name="authors" maxlength="500" required
+                        placeholder="Nevek vesszővel elválasztva" />
                     <label for="projectUrl">Projekt webcíme</label>
-                    <input id="projectUrl" name="website_url" type="url" maxlength="2048" placeholder="https://pelda.hu" />
+                    <input id="projectUrl" name="website_url" type="url" maxlength="2048"
+                        placeholder="https://pelda.hu" />
                     <label for="projectDescription">Leírás</label>
                     <textarea id="projectDescription" name="description" rows="4" maxlength="5000"></textarea>
                     <p class="auth-message" role="status" aria-live="polite"></p>
                     <div class="project-dialog__actions">
                         <button class="btn btn--outline" type="button" data-close-project-dialog>Mégse</button>
-                        <button class="btn btn--primary project-dialog__submit" type="submit">Projekt hozzáadása</button>
+                        <button class="btn btn--primary project-dialog__submit" type="submit">Projekt
+                            hozzáadása</button>
                     </div>
                 </form>
             </dialog>
@@ -110,7 +130,8 @@
                             </div>
                             <div class="submissions__cell submissions__cell--status"><span class="badge"></span></div>
                             <div class="submissions__cell submissions__cell--grade"><span class="grade"></span></div>
-                            <div class="submissions__cell submissions__cell--action"><a class="btn btn--outline"></a></div>
+                            <div class="submissions__cell submissions__cell--action"><a class="btn btn--outline"></a>
+                            </div>
                             <a class="submissions__mobile-link"></a>
                         </div>
                     </template>
