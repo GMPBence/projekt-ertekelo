@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Projekt értékelése – Értékelő</title>
 </head>
 
 
@@ -65,16 +65,16 @@
 
         <main class="content">
             <div class="navbar">
-                <a href="/projekt-ertekelo/projects.html" class="back"><img src="/arrow-left.png" alt="Arrow Left">
+                <a href="./projects.html" class="back"><img src="/arrow-left.png" alt="">
                     <p>Vissza a projektekhez</p>
                 </a>
                 <div class="projectbar">
                     <div class="project-info">
 
-                        <span class="badge badge--green">Értékelve</span>
+                        <span class="badge badge--orange" id="projectStatus">Értékelésre vár</span>
 
-                        <h1 id="project_name">Interaktív történelmi térkép</h1>
-                        <p>Kovacs Bence</p>
+                        <h1 id="project_name">Projekt</h1>
+                        <p id="projectAuthors"></p>
                     </div>
 
                     <div class="swich" role="tablist" aria-label="Projekt nézetválasztó">
@@ -83,6 +83,7 @@
                     </div>
 
                 </div>
+                <p id="projectLoadMessage" role="status" aria-live="polite"></p>
             </div>
 
             <div id="previewSection" class="project-section">
@@ -93,7 +94,7 @@
                             <span class="decoration-span decoration--yellow"></span>
                             <span class="decoration-span decoration--green"></span>
                         </div>
-                        <input id="websiteUrl" type="text" placeholder="https://példaweboldal/">
+                        <input id="websiteUrl" type="url" aria-label="Projekt webcíme" placeholder="https://példaweboldal/">
                         <div class="controls">
                             <button class="project-viewer__refresh" id="refreshButton" type="button"
                                 aria-label="Teljes képernyő">
@@ -108,7 +109,7 @@
 
 
                     </div>
-                    <iframe src="https://botond-cyber.github.io/josda-project/" frameborder="0"></iframe>
+                    <iframe title="Projekt előnézete" src="about:blank"></iframe>
                 </div>
             </div>
 
@@ -190,7 +191,7 @@
                                     <button type="button" class="mini-rating-btn" aria-pressed="false">1</button>
                                     <button type="button" class="mini-rating-btn" aria-pressed="false">2</button>
                                     <button type="button" class="mini-rating-btn" aria-pressed="false">3</button>
-                                    <button type="button" class="mini-rating-btn active" aria-pressed="true">4</button>
+                                    <button type="button" class="mini-rating-btn" aria-pressed="false">4</button>
                                     <button type="button" class="mini-rating-btn" aria-pressed="false">5</button>
                                 </div>
                             </div>
@@ -200,8 +201,9 @@
                                 <div><span>Közzététel</span><strong class="evaluation-visibility">Még nem látható</strong></div>
                             </div>
 
-                            <button type="button" class="evaluation-submit"><span aria-hidden="true">✓</span> Értékelés közzététele</button>
-                            <button type="button" class="evaluation-draft">Mentés vázlatként</button>
+                            <p id="evaluationMessage" role="status" aria-live="polite"></p>
+                            <button type="button" class="evaluation-submit" id="publishEvaluation"><span aria-hidden="true">✓</span> Értékelés közzététele</button>
+                            <button type="button" class="evaluation-draft" id="saveEvaluationDraft">Mentés vázlatként</button>
                         </div>
                     </aside>
                 </div>
@@ -215,7 +217,6 @@
     <script type="module" src="/src/js/project.js"></script>
     <script type="module" src="/src/js/sidebar.js"></script>
     <script type="module" src="/src/js/mobileMenu.js"></script>
-    <script type="module" src="/src/js/projectsOverview.js"></script>
 </body>
 
 

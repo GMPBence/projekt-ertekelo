@@ -31,9 +31,10 @@
             <div class="sidebar__content__footer">
                 <div class="avatar">A</div>
                 <div class="sidebar__content__footer__texts">
-                    <h1>Admin</h1>
-                    <p>Adminisztrátor</p>
+                <h1 id="currentUsername">Felhasználó</h1>
+                <p>Értékelő</p>
                 </div>
+                <button class="logout-button" id="logoutButton" type="button">Kilépés</button>
             </div>
         </div>
 
@@ -54,7 +55,7 @@
                     <h2>Projektek</h2>
                     <p>Beadások áttekintése és következetes értékelése egy helyen.</p>
                 </div>
-                <button class="btn btn--primary" type="button">
+                <button class="btn btn--primary" id="newProjectButton" type="button">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     Új projekt
                 </button>
@@ -83,10 +84,30 @@
         </main>
     </div>
 
+    <dialog class="project-dialog" id="newProjectDialog" aria-labelledby="newProjectTitle">
+        <form id="newProjectForm">
+            <div class="project-dialog__heading">
+                <h2 id="newProjectTitle">Új projekt</h2>
+                <button class="project-dialog__close" id="closeProjectDialog" type="button" aria-label="Bezárás">×</button>
+            </div>
+            <label for="projectTitle">Projekt neve</label>
+            <input id="projectTitle" name="title" maxlength="255" required />
+            <label for="projectAuthors">Készítők</label>
+            <input id="projectAuthors" name="authors" maxlength="500" required placeholder="Nevek vesszővel elválasztva" />
+            <label for="projectUrl">Projekt webcíme</label>
+            <input id="projectUrl" name="website_url" type="url" maxlength="2048" placeholder="https://pelda.hu" />
+            <label for="projectDescription">Leírás</label>
+            <textarea id="projectDescription" name="description" rows="4" maxlength="5000"></textarea>
+            <p class="auth-message" id="projectFormMessage" role="status" aria-live="polite"></p>
+            <button class="btn btn--primary project-dialog__submit" type="submit">Projekt hozzáadása</button>
+        </form>
+    </dialog>
+
      <script type="module" src="/src/js/projects.js"></script>
      <script type="module" src="/src/js/sidebar.js"></script>
      <script type="module" src="/src/js/mobileMenu.js"></script>
      <script type="module" src="/src/js/projectsOverview.js"></script>
+     <script type="module" src="/src/js/projectCreate.js"></script>
 </body>
 
 </html>

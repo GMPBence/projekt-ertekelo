@@ -146,6 +146,97 @@
     display: none;
 }
 
+.logout-button {
+    margin-left: auto;
+    padding: 7px 10px;
+    border: 1px solid #344765;
+    border-radius: 8px;
+    background: transparent;
+    color: #c1cbe0;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    border-color: #748bff;
+    color: #fff;
+}
+
+.project-dialog {
+    width: min(520px, calc(100vw - 32px));
+    max-height: min(90vh, 760px);
+    padding: 26px;
+    border: 1px solid #344765;
+    border-radius: 16px;
+    background: #0e1629;
+    color: #f4f6ff;
+    box-shadow: 0 24px 80px #0009;
+}
+
+.project-dialog::backdrop {
+    background: #020611bf;
+    backdrop-filter: blur(3px);
+}
+
+.project-dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.project-dialog__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.project-dialog__heading h2 {
+    font-size: 23px;
+}
+
+.project-dialog label {
+    color: #dfe6f5;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.project-dialog input,
+.project-dialog textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #344765;
+    border-radius: 8px;
+    background: #080e1c;
+    color: #f4f6ff;
+    font: inherit;
+    resize: vertical;
+}
+
+.project-dialog input:focus-visible,
+.project-dialog textarea:focus-visible,
+.project-dialog button:focus-visible {
+    outline: 2px solid #8498ff;
+    outline-offset: 2px;
+}
+
+.project-dialog__close {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 8px;
+    background: #18243b;
+    color: #f4f6ff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.project-dialog__submit {
+    justify-content: center;
+    margin-top: 7px;
+}
+
 @media (max-width: 900px) {
     .submissions__header {
         align-items: center;
