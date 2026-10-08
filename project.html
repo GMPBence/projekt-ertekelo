@@ -1,14 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
-<body>
-        <iframe style="width: 100%; height: 100vh;" src="https://gmpbence.github.io/projekt-ertekelo/projects.html" frameborder="0"></iframe>
-     <script type="module" src="/src/js/main.js"></script>
-     
+
+
+<body data-page="projects">
+    <div class="sidebar__overlay" id="sidebarOverlay"></div>
+    <div class="layout">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar__content">
+                <div class="sidebar__content__logo">
+                    <div class="logo">É</div>
+                    <h1>értékelő</h1>
+                </div>
+                <div class="sidebar__content__list">
+                    <div class="sidebar__content__list__item" id="sidebar__projects">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                            <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                            <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                            <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                        </svg>
+                        <p>Projektek</p>
+                    </div>
+                    <div class="sidebar__content__list__item" id="sidebar__something">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
+                        </svg>
+                        <p>Valami ide</p>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar__content__footer">
+                <div class="avatar">A</div>
+                <div class="sidebar__content__footer__texts">
+                    <h1>Admin</h1>
+                    <p>Adminisztrátor</p>
+                </div>
+            </div>
+        </div>
+
+        <header class="mobile-topbar">
+            <div class="mobile-topbar__logo">
+                <div class="logo">É</div>
+                <h1>értékelő</h1>
+            </div>
+            <button class="mobile-topbar__toggle" id="menuToggle" aria-label="Menü megnyitása">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+        </header>
+
+        <main class="content">
+            <div class="navbar">
+                <a href="/projekt-ertekelo/projects.html" class="back"><img src="/arrow-left.png" alt="Arrow Left">
+                    <p>Vissza a projektekhez</p>
+                </a>
+                <div class="projectbar">
+                    <div class="project-info">
+
+                        <span class="badge badge--green">Értékelve</span>
+
+                        <h1 id="project_name">Interaktív történelmi térkép</h1>
+                        <p>Kovacs Bence</p>
+                    </div>
+
+                    <div class="swich">
+                        <p class="swich--active">Előnézet</p>
+                        <p>Értékelés</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="project-viewer">
+                <div class="project-viewer-header">
+                    <div class="decoration">
+                        <span class="decoration-span decoration--red"></span>
+                        <span class="decoration-span decoration--yellow"></span>
+                        <span class="decoration-span decoration--green"></span>
+                    </div>
+                    <input id="websiteUrl" type="text" placeholder="https://openfront.io/">
+                    <div class="controls">
+                        <button class="project-viewer__refresh" id="refreshButton" type="button"
+                            aria-label="Teljes képernyő">
+                            <img src="/public/refresh-cw.png" alt="Teljes képernyő">
+                        </button>
+
+                        <button class="project-viewer__fullscreen" id="fullscreenButton" type="button"
+                            aria-label="Teljes képernyő">
+                            <img src="/public/Vector.png" alt="">
+                        </button>
+                    </div>
+
+
+                </div>
+                <iframe src="https://botond-cyber.github.io/josda-project/" frameborder="0"></iframe>
+            </div>
+
+
+        </main>
+    </div>
+
+    <script type="module" src="/src/js/projects.js"></script>
+    <script type="module" src="/src/js/project.js"></script>
+    <script type="module" src="/src/js/sidebar.js"></script>
+    <script type="module" src="/src/js/mobileMenu.js"></script>
+    <script type="module" src="/src/js/projectsOverview.js"></script>
 </body>
-</html> 
+
+
+</html>
