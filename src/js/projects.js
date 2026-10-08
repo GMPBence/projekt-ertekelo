@@ -4,4 +4,5 @@ import '../css/layout.css'
 import '../css/topbar.css'
 import '../css/stats.css'
 import '../css/submissions.css'
+import '../css/projects-motion.css'
 
