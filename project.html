@@ -6,11 +6,13 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projekt értékelése – Értékelő</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
 </head>
 
 
 <body data-page="projects">
-    <div class="sidebar__overlay" id="sidebarOverlay"></div>
+    <input class="sidebar-toggle" id="sidebarMenuToggle" type="checkbox" aria-label="Menü megnyitása">
+    <label class="sidebar__overlay" id="sidebarOverlay" for="sidebarMenuToggle" aria-label="Menü bezárása"></label>
     <div class="layout">
         <div class="sidebar" id="sidebar">
             <div class="sidebar__content">
@@ -19,7 +21,7 @@
                     <h1>értékelő</h1>
                 </div>
                 <div class="sidebar__content__list">
-                    <div class="sidebar__content__list__item" id="sidebar__projects">
+                    <a class="sidebar__content__list__item sidebar__item__active" href="./projects.html" aria-current="page">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="7" height="7" rx="1.5" />
@@ -28,23 +30,16 @@
                             <rect x="14" y="14" width="7" height="7" rx="1.5" />
                         </svg>
                         <p>Projektek</p>
-                    </div>
-                    <div class="sidebar__content__list__item" id="sidebar__something">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
-                        </svg>
-                        <p>Valami ide</p>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="sidebar__content__footer">
                 <div class="avatar">A</div>
                 <div class="sidebar__content__footer__texts">
-                    <h1>Admin</h1>
-                    <p>Adminisztrátor</p>
+                    <h1 id="currentUsername">Felhasználó</h1>
+                    <p>Értékelő</p>
                 </div>
+                <a class="logout-button" href="./index.html" data-logout>Kilépés</a>
             </div>
         </div>
 
@@ -53,14 +48,14 @@
                 <div class="logo">É</div>
                 <h1>értékelő</h1>
             </div>
-            <button class="mobile-topbar__toggle" id="menuToggle" aria-label="Menü megnyitása">
+            <label class="mobile-topbar__toggle" for="sidebarMenuToggle">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round">
                     <line x1="3" y1="6" x2="21" y2="6" />
                     <line x1="3" y1="12" x2="21" y2="12" />
                     <line x1="3" y1="18" x2="21" y2="18" />
                 </svg>
-            </button>
+            </label>
         </header>
 
         <main class="content">
@@ -77,9 +72,9 @@
                         <p id="projectAuthors"></p>
                     </div>
 
-                    <div class="swich" role="tablist" aria-label="Projekt nézetválasztó">
-                        <p class="swich--active" data-view="preview" role="tab" aria-selected="true">Előnézet</p>
-                        <p data-view="evaluation" role="tab" aria-selected="false">Értékelés</p>
+                    <div class="swich" aria-label="Projekt nézetválasztó">
+                        <a class="swich--active" href="#previewSection">Előnézet</a>
+                        <a href="#evaluationSection">Értékelés</a>
                     </div>
 
                 </div>
@@ -96,24 +91,20 @@
                         </div>
                         <input id="websiteUrl" type="url" aria-label="Projekt webcíme" placeholder="https://példaweboldal/">
                         <div class="controls">
-                            <button class="project-viewer__refresh" id="refreshButton" type="button"
-                                aria-label="Teljes képernyő">
-                                <img src="/public/refresh-cw.png" alt="Teljes képernyő">
+                            <button class="project-viewer__refresh" id="refreshButton" type="button" aria-label="Előnézet frissítése">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M5.6 9a7 7 0 0 1 11.5-2L20 12M4 12l2.9 5a7 7 0 0 0 11.5-2"/></svg>
                             </button>
-
-                            <button class="project-viewer__fullscreen" id="fullscreenButton" type="button"
-                                aria-label="Teljes képernyő">
-                                <img src="/public/Vector.png" alt="">
+                            <button class="project-viewer__fullscreen" id="fullscreenButton" type="button" aria-label="Teljes képernyő váltása">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg>
                             </button>
                         </div>
-
-
                     </div>
                     <iframe title="Projekt előnézete" src="about:blank"></iframe>
                 </div>
             </div>
 
-            <section id="evaluationSection" class="project-section hidden" aria-label="Értékelés">
+            <section id="evaluationSection" class="project-section" aria-label="Értékelés">
+              <form id="evaluationForm" data-api="/projects/{projectId}/evaluations" data-evaluation>
                 <div class="evaluation-layout">
                     <div class="evaluation-panel">
                         <div class="question-card">
@@ -121,12 +112,12 @@
                                 <p>Mennyire illeszkedik a projekt a kiadott témához?</p>
                                 <small>A tartalom relevanciája és a feladatnak való megfelelés alapján értékelhető.</small>
                             </div>
-                            <div class="rating-row" data-question="theme">
-                                <button type="button" class="rating-btn">1</button>
-                                <button type="button" class="rating-btn">2</button>
-                                <button type="button" class="rating-btn">3</button>
-                                <button type="button" class="rating-btn">4</button>
-                                <button type="button" class="rating-btn">5</button>
+                            <div class="rating-row" role="group" aria-label="Téma értékelése 1-től 5-ig">
+                                <label class="rating-choice"><input type="radio" name="theme" value="1" data-number><span>1</span></label>
+                                <label class="rating-choice"><input type="radio" name="theme" value="2" data-number><span>2</span></label>
+                                <label class="rating-choice"><input type="radio" name="theme" value="3" data-number><span>3</span></label>
+                                <label class="rating-choice"><input type="radio" name="theme" value="4" data-number><span>4</span></label>
+                                <label class="rating-choice"><input type="radio" name="theme" value="5" data-number><span>5</span></label>
                             </div>
                         </div>
 
@@ -135,12 +126,12 @@
                                 <p>Mennyire tiszta és vizuálisan igényes a design?</p>
                                 <small>Harmonikus, olvasható és esztétikus megjelenés.</small>
                             </div>
-                            <div class="rating-row" data-question="design">
-                                <button type="button" class="rating-btn">1</button>
-                                <button type="button" class="rating-btn">2</button>
-                                <button type="button" class="rating-btn">3</button>
-                                <button type="button" class="rating-btn">4</button>
-                                <button type="button" class="rating-btn">5</button>
+                            <div class="rating-row" role="group" aria-label="Design értékelése 1-től 5-ig">
+                                <label class="rating-choice"><input type="radio" name="design" value="1" data-number><span>1</span></label>
+                                <label class="rating-choice"><input type="radio" name="design" value="2" data-number><span>2</span></label>
+                                <label class="rating-choice"><input type="radio" name="design" value="3" data-number><span>3</span></label>
+                                <label class="rating-choice"><input type="radio" name="design" value="4" data-number><span>4</span></label>
+                                <label class="rating-choice"><input type="radio" name="design" value="5" data-number><span>5</span></label>
                             </div>
                         </div>
 
@@ -149,12 +140,12 @@
                                 <p>Mennyire jó a CSS animációk?</p>
                                 <small>Az interakciók, mozgások és általános reakcióképesség alapján.</small>
                             </div>
-                            <div class="rating-row" data-question="animations">
-                                <button type="button" class="rating-btn">1</button>
-                                <button type="button" class="rating-btn">2</button>
-                                <button type="button" class="rating-btn">3</button>
-                                <button type="button" class="rating-btn">4</button>
-                                <button type="button" class="rating-btn">5</button>
+                            <div class="rating-row" role="group" aria-label="Animációk értékelése 1-től 5-ig">
+                                <label class="rating-choice"><input type="radio" name="animations" value="1" data-number><span>1</span></label>
+                                <label class="rating-choice"><input type="radio" name="animations" value="2" data-number><span>2</span></label>
+                                <label class="rating-choice"><input type="radio" name="animations" value="3" data-number><span>3</span></label>
+                                <label class="rating-choice"><input type="radio" name="animations" value="4" data-number><span>4</span></label>
+                                <label class="rating-choice"><input type="radio" name="animations" value="5" data-number><span>5</span></label>
                             </div>
                         </div>
 
@@ -163,12 +154,12 @@
                                 <p>Mennyire jól használható a JavaScript segítségével?</p>
                                 <small>Az interaktivitás, logika és funkcionalitás alapján.</small>
                             </div>
-                            <div class="rating-row" data-question="javascript">
-                                <button type="button" class="rating-btn">1</button>
-                                <button type="button" class="rating-btn">2</button>
-                                <button type="button" class="rating-btn">3</button>
-                                <button type="button" class="rating-btn">4</button>
-                                <button type="button" class="rating-btn">5</button>
+                            <div class="rating-row" role="group" aria-label="JavaScript értékelése 1-től 5-ig">
+                                <label class="rating-choice"><input type="radio" name="javascript" value="1" data-number><span>1</span></label>
+                                <label class="rating-choice"><input type="radio" name="javascript" value="2" data-number><span>2</span></label>
+                                <label class="rating-choice"><input type="radio" name="javascript" value="3" data-number><span>3</span></label>
+                                <label class="rating-choice"><input type="radio" name="javascript" value="4" data-number><span>4</span></label>
+                                <label class="rating-choice"><input type="radio" name="javascript" value="5" data-number><span>5</span></label>
                             </div>
                         </div>
 
@@ -177,7 +168,7 @@
                                 <p>Szöveges visszajelzés</p>
                                 <small>A projekt erősségei és fejlesztési lehetőségei.</small>
                             </div>
-                            <textarea rows="5" placeholder="A tárlat általános értékelése, a jövőben javítandó elemek..."></textarea>
+                            <textarea name="feedback" rows="5" maxlength="5000" placeholder="A tárlat általános értékelése, a jövőben javítandó elemek..."></textarea>
                         </div>
                     </div>
 
@@ -187,12 +178,12 @@
                             <p class="evaluation-grade-hint">A részpontszámok alapján javasolt: <strong id="averageScore">4</strong></p>
 
                             <div class="evaluation-sidebar__rating">
-                                <div class="evaluation-sidebar__rating-row">
-                                    <button type="button" class="mini-rating-btn" aria-pressed="false">1</button>
-                                    <button type="button" class="mini-rating-btn" aria-pressed="false">2</button>
-                                    <button type="button" class="mini-rating-btn" aria-pressed="false">3</button>
-                                    <button type="button" class="mini-rating-btn" aria-pressed="false">4</button>
-                                    <button type="button" class="mini-rating-btn" aria-pressed="false">5</button>
+                                <div class="evaluation-sidebar__rating-row" role="group" aria-label="Érdemjegy 1-től 5-ig">
+                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="1" data-number><span>1</span></label>
+                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="2" data-number><span>2</span></label>
+                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="3" data-number><span>3</span></label>
+                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="4" data-number><span>4</span></label>
+                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="5" data-number><span>5</span></label>
                                 </div>
                             </div>
 
@@ -202,21 +193,19 @@
                             </div>
 
                             <p id="evaluationMessage" role="status" aria-live="polite"></p>
-                            <button type="button" class="evaluation-submit" id="publishEvaluation"><span aria-hidden="true">✓</span> Értékelés közzététele</button>
-                            <button type="button" class="evaluation-draft" id="saveEvaluationDraft">Mentés vázlatként</button>
+                            <button class="evaluation-submit" type="submit" name="published" value="true"><span aria-hidden="true">✓</span> Értékelés közzététele</button>
+                            <button class="evaluation-draft" type="submit" name="published" value="false">Mentés vázlatként</button>
                         </div>
                     </aside>
                 </div>
+              </form>
             </section>
 
 
         </main>
     </div>
 
-    <script type="module" src="/src/js/projects.js"></script>
-    <script type="module" src="/src/js/project.js"></script>
-    <script type="module" src="/src/js/sidebar.js"></script>
-    <script type="module" src="/src/js/mobileMenu.js"></script>
+    <script type="module" src="/src/js/script.js"></script>
 </body>
 
 

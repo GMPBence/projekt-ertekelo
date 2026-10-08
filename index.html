@@ -4,96 +4,36 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/css/style.css" />
   <title>Bejelentkezés – Értékelő</title>
 </head>
 <body>
   <div id="app">
     <main class="container">
       <section class="bal" aria-labelledby="page-title">
-        <div class="sidebar__content__logo">
-          <div class="logo" aria-hidden="true">É</div>
-          <span>értékelő</span>
-        </div>
-        <div class="title">
-          <h1 id="page-title">Értékeld a projekteket egy helyen</h1>
-        </div>
-        <div class="text">
-          <p>Letisztult tanári munkatér webfejlesztési projektek előnézetéhez, következetes értékeléséhez és lezárásához.</p>
-        </div>
+        <div class="sidebar__content__logo"><div class="logo" aria-hidden="true">É</div><span>értékelő</span></div>
+        <div class="title"><h1 id="page-title">Értékeld a projekteket egy helyen</h1></div>
+        <div class="text"><p>Letisztult tanári munkatér webfejlesztési projektek előnézetéhez, következetes értékeléséhez és lezárásához.</p></div>
       </section>
       <section class="jobb" aria-labelledby="login-title">
         <div class="udv">
           <h2 id="login-title">Üdv újra.</h2>
-          <p id="auth-description">Jelentkezzen be a projektértékelő felületre!</p>
+          <p>Jelentkezzen be a projektértékelő felületre!</p>
         </div>
-        <p class="auth-message" id="authMessage" role="status" aria-live="polite"></p>
-
-        <form id="loginForm">
-          <div class="auth-field">
-            <label for="loginEmail">Email</label>
-            <input id="loginEmail" name="email" type="email" autocomplete="email" required placeholder="pelda@iskola.hu" />
-          </div>
-          <div class="auth-field">
-            <label for="loginPassword">Jelszó</label>
-            <input id="loginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Add meg a jelszavad" />
-          </div>
-          <div class="auth-actions">
-            <button class="auth-primary" type="submit">Belépés <span aria-hidden="true">→</span></button>
-          </div>
-          <nav class="auth-links" aria-label="Fiókműveletek">
-            <button type="button" data-auth-view="recover">Elfelejtetted a jelszavad?</button>
-            <button type="button" data-auth-view="register">Új fiók létrehozása</button>
-          </nav>
+        <form id="loginForm" data-api="/auth/login" data-redirect="./projects.html">
+          <div class="auth-field"><label for="loginEmail">Email</label><input id="loginEmail" name="email" type="email" autocomplete="email" required placeholder="pelda@iskola.hu" /></div>
+          <div class="auth-field"><label for="loginPassword">Jelszó</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Add meg a jelszavad" /></div>
+          <p class="auth-message" role="status" aria-live="polite"></p>
+          <div class="auth-actions"><button class="auth-primary" type="submit">Belépés <span aria-hidden="true">→</span></button></div>
         </form>
-
-        <form id="registerForm" hidden>
-          <div class="auth-field">
-            <label for="registerUsername">Felhasználónév</label>
-            <input id="registerUsername" name="username" type="text" autocomplete="username" minlength="3" maxlength="50" required placeholder="Felhasználónév" />
-          </div>
-          <div class="auth-field">
-            <label for="registerEmail">Email</label>
-            <input id="registerEmail" name="email" type="email" autocomplete="email" required placeholder="pelda@iskola.hu" />
-          </div>
-          <div class="auth-field">
-            <label for="registerPassword">Jelszó (legalább 8 karakter)</label>
-            <input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="Válassz egy jelszót" />
-          </div>
-          <div class="auth-actions">
-            <button class="auth-primary" type="submit">Regisztráció <span aria-hidden="true">→</span></button>
-          </div>
-          <nav class="auth-links"><button type="button" data-auth-view="login">Vissza a bejelentkezéshez</button></nav>
-        </form>
-
-        <form id="recoverForm" hidden>
-          <div id="recoverRequestFields">
-            <div class="auth-field">
-              <label for="recoverEmail">Regisztrációs email</label>
-              <input id="recoverEmail" name="email" type="email" autocomplete="email" required placeholder="pelda@iskola.hu" />
-            </div>
-            <div class="auth-actions">
-              <button class="auth-primary" type="submit">Helyreállító kód kérése <span aria-hidden="true">→</span></button>
-            </div>
-          </div>
-          <div id="recoverFinishFields" hidden>
-            <div class="auth-field">
-              <label for="recoverToken">Emailben kapott kód</label>
-              <input id="recoverToken" name="token" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{9}" maxlength="9" placeholder="9 jegyű kód" />
-            </div>
-            <div class="auth-field">
-              <label for="recoverPassword">Új jelszó (legalább 8 karakter)</label>
-              <input id="recoverPassword" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="Új jelszó" />
-            </div>
-            <div class="auth-actions">
-              <button class="auth-primary" type="button" id="completeRecovery">Jelszó visszaállítása <span aria-hidden="true">→</span></button>
-            </div>
-          </div>
-          <nav class="auth-links"><button type="button" data-auth-view="login">Vissza a bejelentkezéshez</button></nav>
-        </form>
+        <nav class="auth-links" aria-label="Fiókműveletek">
+          <a href="./register.html">Új fiók létrehozása</a>
+          <a href="./recover.html">Elfelejtetted a jelszavad?</a>
+        </nav>
       </section>
     </main>
     <footer>Értékelő 2026 · Tanári használatra</footer>
   </div>
-  <script type="module" src="/src/js/auth.js"></script>
+  <script type="module" src="/src/js/script.js"></script>
 </body>
 </html>

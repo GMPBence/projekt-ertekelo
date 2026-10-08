@@ -1,6 +1,0 @@
-import '@fontsource/manrope'
-import '@fontsource/manrope/600.css'
-import '@fontsource/manrope/700.css'
-import '@fontsource-variable/space-grotesk'
-import '../css/style.css'
-import '../css/sidebar.css'
