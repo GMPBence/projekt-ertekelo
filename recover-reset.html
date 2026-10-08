@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/css/style.css" />
+  <title>Új jelszó – Értékelő</title>
+</head>
+<body>
+  <div id="app">
+    <main class="container">
+      <section class="bal" aria-labelledby="page-title">
+        <div class="sidebar__content__logo"><div class="logo" aria-hidden="true">É</div><span>értékelő</span></div>
+        <div class="title"><h1 id="page-title">Állítsd be az új jelszavad</h1></div>
+        <div class="text"><p>Add meg az emailben kapott helyreállító kódot, és írd be kétszer az új jelszavad.</p></div>
+      </section>
+      <section class="jobb" aria-labelledby="reset-title">
+        <div class="udv">
+          <h2 id="reset-title">Új jelszó</h2>
+          <p>A helyreállító kód 15 percig érvényes.</p>
+        </div>
+        <form id="recoverCompleteForm" data-api="/auth/recover/complete"
+          data-success="A jelszavad frissült. Most már bejelentkezhetsz." data-reset-on-success>
+          <div class="auth-field"><label for="recoverFinishEmail">Regisztrációs email</label><input
+              id="recoverFinishEmail" name="email" type="email" autocomplete="email" required
+              placeholder="pelda@iskola.hu" /></div>
+          <div class="auth-field"><label for="recoverToken">Emailben kapott 9 jegyű kód</label><input id="recoverToken"
+              name="token" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{9}" minlength="9"
+              maxlength="9" required placeholder="9 jegyű kód" /></div>
+          <div class="auth-field"><label for="recoverPassword">Új jelszó (legalább 8 karakter)</label><input
+              id="recoverPassword" name="password" type="password" autocomplete="new-password" minlength="8"
+              maxlength="72" required placeholder="Új jelszó" /></div>
+          <div class="auth-field"><label for="recoverPasswordConfirm">Új jelszó ismét</label><input
+              id="recoverPasswordConfirm" name="confirmPassword" type="password" autocomplete="new-password"
+              minlength="8" maxlength="72" required placeholder="Írd be újra az új jelszót" /></div>
+          <p class="auth-message" role="status" aria-live="polite"></p>
+          <div class="auth-actions"><button class="auth-primary" type="submit">Jelszó visszaállítása <span
+                aria-hidden="true">→</span></button></div>
+        </form>
+        <nav class="auth-links" aria-label="Jelszó-helyreállítási navigáció">
+          <a href="./recover.html">Új helyreállító kód kérése</a>
+          <a href="./index.html">Vissza a bejelentkezéshez</a>
+        </nav>
+      </section>
+    </main>
+    <footer>Értékelő 2026 · Tanári használatra</footer>
+  </div>
+  <script type="module" src="/src/js/script.js"></script>
+</body>
+</html>
