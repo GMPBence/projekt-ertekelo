@@ -228,12 +228,12 @@
 
     <dialog class="snake-dialog" id="snakeDialog" aria-labelledby="snakeTitle" aria-describedby="snakeInstructions" data-state="playing">
         <div class="snake-dialog__content">
-            <button class="snake-dialog__close" type="button" aria-label="Játék bezárása" data-close-snake>×</button>
+            <form method="dialog" class="snake-dialog__close-form"><button class="snake-dialog__close" type="submit" aria-label="Játék bezárása">×</button></form>
             <p class="snake-dialog__eyebrow">KÖZZÉTÉTELI KIHÍVÁS</p>
             <h2 id="snakeTitle">Snake: gyűjts 10 pontot!</h2>
             <p class="snake-dialog__instructions" id="snakeInstructions">Irányítsd a kígyót a nyilakkal vagy a WASD billentyűkkel. Mobilon használd az iránygombokat.</p>
             <div class="snake-dialog__score" aria-live="polite">Pontszám: <strong id="snakeScore">0</strong><span>/10</span></div>
-            <div class="snake-board" id="snakeBoard" role="grid" aria-label="Snake játéktér, 20 sor és 20 oszlop"></div>
+            <canvas class="snake-board" id="snakeBoard" width="400" height="400" role="img" aria-label="Snake játéktér, 20 sor és 20 oszlop"></canvas>
             <p class="snake-dialog__status" id="snakeStatus" role="status" aria-live="polite">A játék indul!</p>
             <div class="snake-controls" aria-label="Irányítás">
                 <div class="snake-controls__row snake-controls__row--center"><button type="button" data-snake-direction="up" aria-label="Fel">↑</button></div>
@@ -245,14 +245,14 @@
             </div>
             <div class="snake-dialog__actions">
                 <button class="snake-dialog__restart" type="button" data-restart-snake hidden>Új játék</button>
-                <button class="snake-dialog__cancel" type="button" data-close-snake>Bezárás</button>
+                <form method="dialog"><button class="snake-dialog__cancel" type="submit">Bezárás</button></form>
             </div>
         </div>
     </dialog>
 
     <dialog class="publish-success" id="publishSuccessDialog" aria-labelledby="publishSuccessTitle" aria-describedby="publishSuccessDescription">
         <div class="publish-success__content">
-            <button class="publish-success__close" type="button" aria-label="Ablak bezárása" data-close-publish-success>×</button>
+            <form method="dialog" class="publish-success__close-form"><button class="publish-success__close" type="submit" aria-label="Ablak bezárása">×</button></form>
             <div class="publish-success__icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64" fill="none">
                     <circle class="publish-success__ring" cx="32" cy="32" r="27" />
@@ -262,10 +262,11 @@
             <p class="publish-success__eyebrow">SIKERES KÖZZÉTÉTEL</p>
             <h2 id="publishSuccessTitle">Értékelés közzétéve!</h2>
             <p class="publish-success__description" id="publishSuccessDescription">Az értékelés sikeresen elkészült, és már látható a projekt oldalán.</p>
-            <button class="publish-success__button" type="button" data-close-publish-success>Szuper, rendben</button>
+            <form method="dialog" class="publish-success__action-form"><button class="publish-success__button" type="submit">Szuper, rendben</button></form>
         </div>
     </dialog>
 
+    <script type="module" src="/src/js/snake.js"></script>
     <script type="module" src="/src/js/script.js"></script>
 </body>
 
