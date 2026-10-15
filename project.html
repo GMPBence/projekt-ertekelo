@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/css/style.css" />
     <title>Érékelő</title>
 </head>
 
@@ -21,8 +22,7 @@
                 </div>
                 <div class="sidebar__content__list">
                     <a class="sidebar__content__list__item sidebar__item__active" href="./projects.html" aria-current="page">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="7" height="7" rx="1.5" />
                             <rect x="14" y="3" width="7" height="7" rx="1.5" />
                             <rect x="3" y="14" width="7" height="7" rx="1.5" />
@@ -91,10 +91,16 @@
                         <input id="websiteUrl" type="url" aria-label="Projekt webcíme" placeholder="https://példaweboldal/">
                         <div class="controls">
                             <button class="project-viewer__refresh" id="refreshButton" type="button" aria-label="Előnézet frissítése">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M5.6 9a7 7 0 0 1 11.5-2L20 12M4 12l2.9 5a7 7 0 0 0 11.5-2"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M20 7v5h-5" />
+                                    <path d="M4 17v-5h5" />
+                                    <path d="M5.6 9a7 7 0 0 1 11.5-2L20 12M4 12l2.9 5a7 7 0 0 0 11.5-2" />
+                                </svg>
                             </button>
                             <button class="project-viewer__fullscreen" id="fullscreenButton" type="button" aria-label="Teljes képernyő váltása">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3" />
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -103,106 +109,162 @@
             </div>
 
             <section id="evaluationSection" class="project-section" aria-label="Értékelés">
-              <form id="evaluationForm" data-api="/projects/{projectId}/evaluations" data-evaluation>
-                <div class="evaluation-layout">
-                    <div class="evaluation-panel">
-                        <div class="question-card">
-                            <div class="question-copy">
-                                <p>Mennyire illeszkedik a projekt a kiadott témához?</p>
-                                <small>A tartalom relevanciája és a feladatnak való megfelelés alapján értékelhető.</small>
-                            </div>
-                            <div class="rating-row" role="group" aria-label="Téma értékelése 1-től 5-ig">
-                                <label class="rating-choice"><input type="radio" name="theme" value="1" data-number><span>1</span></label>
-                                <label class="rating-choice"><input type="radio" name="theme" value="2" data-number><span>2</span></label>
-                                <label class="rating-choice"><input type="radio" name="theme" value="3" data-number><span>3</span></label>
-                                <label class="rating-choice"><input type="radio" name="theme" value="4" data-number><span>4</span></label>
-                                <label class="rating-choice"><input type="radio" name="theme" value="5" data-number><span>5</span></label>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-copy">
-                                <p>Mennyire tiszta és vizuálisan igényes a design?</p>
-                                <small>Harmonikus, olvasható és esztétikus megjelenés.</small>
-                            </div>
-                            <div class="rating-row" role="group" aria-label="Design értékelése 1-től 5-ig">
-                                <label class="rating-choice"><input type="radio" name="design" value="1" data-number><span>1</span></label>
-                                <label class="rating-choice"><input type="radio" name="design" value="2" data-number><span>2</span></label>
-                                <label class="rating-choice"><input type="radio" name="design" value="3" data-number><span>3</span></label>
-                                <label class="rating-choice"><input type="radio" name="design" value="4" data-number><span>4</span></label>
-                                <label class="rating-choice"><input type="radio" name="design" value="5" data-number><span>5</span></label>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-copy">
-                                <p>Mennyire jó a CSS animációk?</p>
-                                <small>Az interakciók, mozgások és általános reakcióképesség alapján.</small>
-                            </div>
-                            <div class="rating-row" role="group" aria-label="Animációk értékelése 1-től 5-ig">
-                                <label class="rating-choice"><input type="radio" name="animations" value="1" data-number><span>1</span></label>
-                                <label class="rating-choice"><input type="radio" name="animations" value="2" data-number><span>2</span></label>
-                                <label class="rating-choice"><input type="radio" name="animations" value="3" data-number><span>3</span></label>
-                                <label class="rating-choice"><input type="radio" name="animations" value="4" data-number><span>4</span></label>
-                                <label class="rating-choice"><input type="radio" name="animations" value="5" data-number><span>5</span></label>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-copy">
-                                <p>Mennyire jól használható a JavaScript segítségével?</p>
-                                <small>Az interaktivitás, logika és funkcionalitás alapján.</small>
-                            </div>
-                            <div class="rating-row" role="group" aria-label="JavaScript értékelése 1-től 5-ig">
-                                <label class="rating-choice"><input type="radio" name="javascript" value="1" data-number><span>1</span></label>
-                                <label class="rating-choice"><input type="radio" name="javascript" value="2" data-number><span>2</span></label>
-                                <label class="rating-choice"><input type="radio" name="javascript" value="3" data-number><span>3</span></label>
-                                <label class="rating-choice"><input type="radio" name="javascript" value="4" data-number><span>4</span></label>
-                                <label class="rating-choice"><input type="radio" name="javascript" value="5" data-number><span>5</span></label>
-                            </div>
-                        </div>
-
-                        <div class="question-card question-card--full">
-                            <div class="question-copy">
-                                <p>Szöveges visszajelzés</p>
-                                <small>A projekt erősségei és fejlesztési lehetőségei.</small>
-                            </div>
-                            <textarea name="feedback" rows="5" maxlength="5000" placeholder="A tárlat általános értékelése, a jövőben javítandó elemek..."></textarea>
-                        </div>
-                    </div>
-
-                    <aside class="evaluation-sidebar">
-                        <div class="evaluation-sidebar__card">
-                            <h3>Érdemjegy</h3>
-                            <p class="evaluation-grade-hint">A részpontszámok alapján javasolt: <strong id="averageScore">4</strong></p>
-
-                            <div class="evaluation-sidebar__rating">
-                                <div class="evaluation-sidebar__rating-row" role="group" aria-label="Érdemjegy 1-től 5-ig">
-                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="1" data-number><span>1</span></label>
-                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="2" data-number><span>2</span></label>
-                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="3" data-number><span>3</span></label>
-                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="4" data-number><span>4</span></label>
-                                    <label class="mini-rating-choice"><input type="radio" name="grade" value="5" data-number><span>5</span></label>
+                <form id="evaluationForm" data-api="/projects/{projectId}/evaluations" data-evaluation>
+                    <div class="evaluation-layout">
+                        <div class="evaluation-panel">
+                            <div class="question-card">
+                                <div class="question-copy">
+                                    <p>Mennyire illeszkedik a projekt a választott témához?</p>
+                                    <small>A tartalom relevanciája és a feladatnak való megfelelés alapján értékelhető.</small>
+                                </div>
+                                <div class="rating-row" role="group" aria-label="Téma értékelése 1-től 5-ig">
+                                    <label class="rating-choice"><input type="radio" name="theme" value="1" data-number><span>1</span></label>
+                                    <label class="rating-choice"><input type="radio" name="theme" value="2" data-number><span>2</span></label>
+                                    <label class="rating-choice"><input type="radio" name="theme" value="3" data-number><span>3</span></label>
+                                    <label class="rating-choice"><input type="radio" name="theme" value="4" data-number><span>4</span></label>
+                                    <label class="rating-choice"><input type="radio" name="theme" value="5" data-number><span>5</span></label>
                                 </div>
                             </div>
 
-                            <div class="criteria">
-                                <div><span>Kritériumátlag</span><strong><span id="criteriaScore">0.0</span> / 5</strong></div>
-                                <div><span>Közzététel</span><strong class="evaluation-visibility">Még nem látható</strong></div>
+                            <div class="question-card">
+                                <div class="question-copy">
+                                    <p>Mennyire tiszta és vizuálisan igényes a design?</p>
+                                    <small>Harmonikus, olvasható és esztétikus megjelenés.</small>
+                                </div>
+                                <div class="rating-row" role="group" aria-label="Design értékelése 1-től 5-ig">
+                                    <label class="rating-choice"><input type="radio" name="design" value="1" data-number><span>1</span></label>
+                                    <label class="rating-choice"><input type="radio" name="design" value="2" data-number><span>2</span></label>
+                                    <label class="rating-choice"><input type="radio" name="design" value="3" data-number><span>3</span></label>
+                                    <label class="rating-choice"><input type="radio" name="design" value="4" data-number><span>4</span></label>
+                                    <label class="rating-choice"><input type="radio" name="design" value="5" data-number><span>5</span></label>
+                                </div>
                             </div>
 
-                            <p id="evaluationMessage" role="status" aria-live="polite"></p>
-                            <button class="evaluation-submit" type="submit" name="published" value="true"><span aria-hidden="true">✓</span> Értékelés közzététele</button>
-                            <button class="evaluation-draft" type="submit" name="published" value="false">Mentés vázlatként</button>
+                            <div class="question-card">
+                                <div class="question-copy">
+                                    <p>Mennyire jók a CSS animációk?</p>
+                                    <small>A mozgások, átmenetek és interakciók alapján.</small>
+                                </div>
+                                <div class="rating-row" role="group" aria-label="Animációk értékelése 1-től 5-ig">
+                                    <label class="rating-choice"><input type="radio" name="animations" value="1" data-number><span>1</span></label>
+                                    <label class="rating-choice"><input type="radio" name="animations" value="2" data-number><span>2</span></label>
+                                    <label class="rating-choice"><input type="radio" name="animations" value="3" data-number><span>3</span></label>
+                                    <label class="rating-choice"><input type="radio" name="animations" value="4" data-number><span>4</span></label>
+                                    <label class="rating-choice"><input type="radio" name="animations" value="5" data-number><span>5</span></label>
+                                </div>
+                            </div>
+
+                            <div class="question-card">
+                                <div class="question-copy">
+                                    <p>Mennyire van túlbonyolítva a JavaScript?</p>
+                                    <small>Az interakciók, működés és funkcionalitás alapján.</small>
+                                </div>
+                                <div class="rating-row" role="group" aria-label="JavaScript értékelése 1-től 5-ig">
+                                    <label class="rating-choice"><input type="radio" name="javascript" value="1" data-number><span>1</span></label>
+                                    <label class="rating-choice"><input type="radio" name="javascript" value="2" data-number><span>2</span></label>
+                                    <label class="rating-choice"><input type="radio" name="javascript" value="3" data-number><span>3</span></label>
+                                    <label class="rating-choice"><input type="radio" name="javascript" value="4" data-number><span>4</span></label>
+                                    <label class="rating-choice"><input type="radio" name="javascript" value="5" data-number><span>5</span></label>
+                                </div>
+                            </div>
+
+                            <div class="question-card question-card--full">
+                                <div class="question-copy">
+                                    <p>Szöveges visszajelzés</p>
+                                    <small>Mi tetszett, és min lehetne még javítani?</small>
+                                </div>
+                                <textarea name="feedback" rows="5" maxlength="5000" placeholder="A tárlat általános értékelése, a jövőben javítandó elemek..."></textarea>
+                            </div>
                         </div>
-                    </aside>
-                </div>
-              </form>
+
+                        <aside class="evaluation-sidebar">
+                            <div class="evaluation-sidebar__card">
+                                <h3>Érdemjegy</h3>
+                                <p class="evaluation-grade-hint">A részpontszámok alapján javasolt: <strong id="averageScore">4</strong></p>
+
+                                <fieldset class="evaluation-version">
+                                    <legend>Értékelő mód</legend>
+                                    <label class="evaluation-version__option">
+                                        <input type="radio" name="evaluationVersion" value="standard" checked>
+                                        <span class="evaluation-version__radio" aria-hidden="true"></span>
+                                        <span class="evaluation-version__copy"><strong>Alap verzió</strong><small>Snake kihívás nélkül</small></span>
+                                    </label>
+                                    <label class="evaluation-version__option">
+                                        <input type="radio" name="evaluationVersion" value="ai">
+                                        <span class="evaluation-version__radio" aria-hidden="true"></span>
+                                        <span class="evaluation-version__copy"><strong>AI-verzió <em>AI-al készült</em></strong><small>Közzététel előtt teljesítsd a Snake kihívást</small></span>
+                                    </label>
+                                </fieldset>
+
+                                <div class="evaluation-sidebar__rating">
+                                    <div class="evaluation-sidebar__rating-row" role="group" aria-label="Érdemjegy 1-től 5-ig">
+                                        <label class="mini-rating-choice"><input type="radio" name="grade" value="1" data-number><span>1</span></label>
+                                        <label class="mini-rating-choice"><input type="radio" name="grade" value="2" data-number><span>2</span></label>
+                                        <label class="mini-rating-choice"><input type="radio" name="grade" value="3" data-number><span>3</span></label>
+                                        <label class="mini-rating-choice"><input type="radio" name="grade" value="4" data-number><span>4</span></label>
+                                        <label class="mini-rating-choice"><input type="radio" name="grade" value="5" data-number><span>5</span></label>
+                                    </div>
+                                </div>
+
+                                <div class="criteria">
+                                    <div>
+                                        <span>Átlag</span><strong><span id="criteriaScore">0.0</span> / 5</strong>
+                                    </div>
+                                    <div><span>Közzététel</span><strong class="evaluation-visibility">Még nem látható</strong></div>
+                                </div>
+
+                                <p id="evaluationMessage" role="status" aria-live="polite"></p>
+                                <button class="evaluation-submit" type="submit" name="published" value="true"><span aria-hidden="true">✓</span> Értékelés közzététele</button>
+                                <button class="evaluation-draft" type="submit" name="published" value="false">Mentés vázlatként</button>
+                            </div>
+                        </aside>
+                    </div>
+                </form>
             </section>
 
 
         </main>
     </div>
+
+    <dialog class="snake-dialog" id="snakeDialog" aria-labelledby="snakeTitle" aria-describedby="snakeInstructions" data-state="playing">
+        <div class="snake-dialog__content">
+            <button class="snake-dialog__close" type="button" aria-label="Játék bezárása" data-close-snake>×</button>
+            <p class="snake-dialog__eyebrow">KÖZZÉTÉTELI KIHÍVÁS</p>
+            <h2 id="snakeTitle">Snake: gyűjts 10 pontot!</h2>
+            <p class="snake-dialog__instructions" id="snakeInstructions">Irányítsd a kígyót a nyilakkal vagy a WASD billentyűkkel. Mobilon használd az iránygombokat.</p>
+            <div class="snake-dialog__score" aria-live="polite">Pontszám: <strong id="snakeScore">0</strong><span>/10</span></div>
+            <div class="snake-board" id="snakeBoard" role="grid" aria-label="Snake játéktér, 20 sor és 20 oszlop"></div>
+            <p class="snake-dialog__status" id="snakeStatus" role="status" aria-live="polite">A játék indul!</p>
+            <div class="snake-controls" aria-label="Irányítás">
+                <div class="snake-controls__row snake-controls__row--center"><button type="button" data-snake-direction="up" aria-label="Fel">↑</button></div>
+                <div class="snake-controls__row">
+                    <button type="button" data-snake-direction="left" aria-label="Balra">←</button>
+                    <button type="button" data-snake-direction="down" aria-label="Le">↓</button>
+                    <button type="button" data-snake-direction="right" aria-label="Jobbra">→</button>
+                </div>
+            </div>
+            <div class="snake-dialog__actions">
+                <button class="snake-dialog__restart" type="button" data-restart-snake hidden>Új játék</button>
+                <button class="snake-dialog__cancel" type="button" data-close-snake>Bezárás</button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="publish-success" id="publishSuccessDialog" aria-labelledby="publishSuccessTitle" aria-describedby="publishSuccessDescription">
+        <div class="publish-success__content">
+            <button class="publish-success__close" type="button" aria-label="Ablak bezárása" data-close-publish-success>×</button>
+            <div class="publish-success__icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none">
+                    <circle class="publish-success__ring" cx="32" cy="32" r="27" />
+                    <path class="publish-success__check" d="m19 32 9 9 18-19" />
+                </svg>
+            </div>
+            <p class="publish-success__eyebrow">SIKERES KÖZZÉTÉTEL</p>
+            <h2 id="publishSuccessTitle">Értékelés közzétéve!</h2>
+            <p class="publish-success__description" id="publishSuccessDescription">Az értékelés sikeresen elkészült, és már látható a projekt oldalán.</p>
+            <button class="publish-success__button" type="button" data-close-publish-success>Szuper, rendben</button>
+        </div>
+    </dialog>
 
     <script type="module" src="/src/js/script.js"></script>
 </body>

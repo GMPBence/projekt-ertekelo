@@ -22,7 +22,7 @@
         </div>
         <form id="loginForm" data-api="/auth/login" data-redirect="./projects.html">
           <div class="auth-field"><label for="loginEmail">Email</label><input id="loginEmail" name="email" type="email" autocomplete="email" required placeholder="pelda@iskola.hu" /></div>
-          <div class="auth-field"><label for="loginPassword">Jelszó</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Add meg a jelszavad" /></div>
+          <div class="auth-field"><label for="loginPassword">Jelszó</label><div class="password-input-wrapper"><input id="loginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Add meg a jelszavad" /><button class="password-toggle" type="button" aria-label="Jelszó megjelenítése" aria-controls="loginPassword" aria-pressed="false" data-visible="false"><svg class="password-toggle__eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><svg class="password-toggle__eye-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a16 16 0 0 1-3.1 3.9M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10 10 0 0 0 4-.8"/></svg></button></div></div>
           <p class="auth-message" role="status" aria-live="polite"></p>
           <div class="auth-actions"><button class="auth-primary" type="submit">Belépés <span aria-hidden="true">→</span></button></div>
         </form>

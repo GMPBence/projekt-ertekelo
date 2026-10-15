@@ -19,21 +19,19 @@
         <div class="title">
           <h1 id="page-title">Állítsd vissza a jelszavad</h1>
         </div>
-        <div class="text"><p>Kérj helyreállító kódot emailben, majd folytasd a jelszó visszaállítását.</p></div>
+        <div class="text">
+          <p>Kérj helyreállító kódot emailben, majd folytasd a jelszó visszaállítását.</p>
+        </div>
       </section>
       <section class="jobb" aria-labelledby="recover-title">
         <div class="udv">
           <h2 id="recover-title">Jelszó-helyreállítás</h2>
           <p>Emailben küldünk egy 15 percig érvényes helyreállító kódot.</p>
         </div>
-        <form id="recoverForm" data-api="/auth/recover"
-          data-success="Ha az email címhez tartozik fiók, elküldtük a 15 percig érvényes kódot."
-          data-redirect="./recover-reset.html" data-redirect-email="email">
-          <div class="auth-field"><label for="recoverEmail">Regisztrációs email</label><input id="recoverEmail"
-              name="email" type="email" autocomplete="email" required placeholder="pelda@iskola.hu" /></div>
+        <form id="recoverForm" data-api="/auth/recover" data-success="Ha az email címhez tartozik fiók, elküldtük a 15 percig érvényes kódot." data-redirect="./recover-reset.html" data-redirect-email="email">
+          <div class="auth-field"><label for="recoverEmail">Regisztrációs email</label><input id="recoverEmail" name="email" type="email" autocomplete="email" required placeholder="pelda@iskola.hu" /></div>
           <p class="auth-message" role="status" aria-live="polite"></p>
-          <div class="auth-actions"><button class="auth-primary" type="submit">Helyreállító kód kérése <span
-                aria-hidden="true">→</span></button></div>
+          <div class="auth-actions"><button class="auth-primary" type="submit">Helyreállító kód kérése <span aria-hidden="true">→</span></button></div>
         </form>
         <nav class="auth-links" aria-label="Fiókműveletek"><a href="./index.html">Vissza a bejelentkezéshez</a></nav>
       </section>
