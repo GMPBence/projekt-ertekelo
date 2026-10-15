@@ -212,6 +212,22 @@
         </main>
     </div>
 
+    <dialog class="publish-success" id="publishSuccessDialog" aria-labelledby="publishSuccessTitle" aria-describedby="publishSuccessDescription">
+        <div class="publish-success__content">
+            <button class="publish-success__close" type="button" aria-label="Ablak bezárása" data-close-publish-success>×</button>
+            <div class="publish-success__icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none">
+                    <circle class="publish-success__ring" cx="32" cy="32" r="27" />
+                    <path class="publish-success__check" d="m19 32 9 9 18-19" />
+                </svg>
+            </div>
+            <p class="publish-success__eyebrow">SIKERES KÖZZÉTÉTEL</p>
+            <h2 id="publishSuccessTitle">Értékelés közzétéve!</h2>
+            <p class="publish-success__description" id="publishSuccessDescription">Az értékelés sikeresen elkészült, és már látható a projekt oldalán.</p>
+            <button class="publish-success__button" type="button" data-close-publish-success>Szuper, rendben</button>
+        </div>
+    </dialog>
+
     <script type="module" src="/src/js/script.js"></script>
 </body>
 

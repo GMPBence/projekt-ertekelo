@@ -9,6 +9,16 @@ const request = async (path, options = {}) => {
   }
   return result
 }
+document.querySelectorAll('.password-toggle').forEach((button) => {
+  button.addEventListener('click', () => {
+    const input = byId(button.getAttribute('aria-controls'))
+    const visible = input.type === 'password'
+    input.type = visible ? 'text' : 'password'
+    button.setAttribute('aria-pressed', String(visible))
+    button.setAttribute('aria-label', visible ? 'Jelszó elrejtése' : 'Jelszó megjelenítése')
+    button.dataset.visible = String(visible)
+  })
+})
 const requireAuth = () => token() || (location.replace('./index.html'), false)
 const message = (element, text, error = false) => {
   if (!element) return
@@ -39,6 +49,11 @@ if (byId('projectDialog')) {
   dialog.addEventListener('cancel', (event) => { event.preventDefault(); dialog.close() })
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && dialog.open) dialog.close() })
   dialog.querySelectorAll('[data-close-project-dialog]').forEach((button) => button.addEventListener('click', () => dialog.close()))
+}
+if (byId('publishSuccessDialog')) {
+  const dialog = byId('publishSuccessDialog')
+  dialog.querySelectorAll('[data-close-publish-success]').forEach((button) => button.addEventListener('click', () => dialog.close()))
+  dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close() })
 }
 if (byId('currentUsername')) {
   byId('currentUsername').textContent = user.username || 'Felhasználó'; document.querySelector('.sidebar__content__footer .avatar').textContent = (user.username || 'F').slice(0, 1).toLocaleUpperCase('hu')
@@ -76,6 +91,7 @@ document.addEventListener('submit', async (event) => {
     }
     message(status, form.dataset.success || (form.hasAttribute('data-evaluation') ? data.published ? 'Az értékelés közzétéve.' : 'A vázlat mentése sikerült.' : result?.message || 'Mentés sikerült.'))
     if (data.published) { byId('projectStatus')?.classList.replace('badge--orange', 'badge--green'); if (byId('projectStatus')) byId('projectStatus').textContent = 'Értékelve' }
+    if (form.hasAttribute('data-evaluation') && data.published) byId('publishSuccessDialog')?.showModal()
     if (form.hasAttribute('data-reset-on-success')) form.reset()
     if (form.hasAttribute('data-reload-on-success')) {
       if (form.id === 'newProjectForm') form.closest('dialog')?.close()
