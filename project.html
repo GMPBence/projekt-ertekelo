@@ -97,6 +97,10 @@
                                     <path d="M5.6 9a7 7 0 0 1 11.5-2L20 12M4 12l2.9 5a7 7 0 0 0 11.5-2" />
                                 </svg>
                             </button>
+                            <label class="project-viewer__size" for="previewWidth">
+                                <span>Szélesség: <output id="previewWidthValue" for="previewWidth">Teljes</output></span>
+                                <input id="previewWidth" type="range" min="320" max="1440" value="1440" step="10" aria-label="Előnézet szélessége">
+                            </label>
                             <button class="project-viewer__fullscreen" id="fullscreenButton" type="button" aria-label="Teljes képernyő váltása">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3" />
