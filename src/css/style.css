@@ -2189,6 +2189,127 @@ body:has(#evaluationSection:target) #previewSection {
     font-weight: 700;
 }
 
+.evaluation-version {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    margin: 18px 0 0;
+    padding: 0;
+    border: 0;
+}
+
+.evaluation-version legend {
+    margin-bottom: 9px;
+    color: #8d9ab2;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.evaluation-version__option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    border: 1px solid #293954;
+    border-radius: 10px;
+    background: rgba(10, 16, 30, 0.42);
+    cursor: pointer;
+    transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.evaluation-version__option:hover {
+    transform: translateY(-1px);
+    border-color: #5268a8;
+}
+
+.evaluation-version__option:has(input:checked) {
+    border-color: rgba(116, 139, 255, 0.72);
+    background: linear-gradient(110deg, rgba(82, 104, 217, 0.16), rgba(108, 79, 209, 0.1));
+    box-shadow: inset 0 0 18px rgba(116, 139, 255, 0.04), 0 0 0 1px rgba(116, 139, 255, 0.08);
+}
+
+.evaluation-version__option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.evaluation-version__radio {
+    display: flex;
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #63718e;
+    border-radius: 50%;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.evaluation-version__radio::after {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #aebaff;
+    content: "";
+    transform: scale(0);
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.evaluation-version__option input:checked + .evaluation-version__radio {
+    border-color: #8fa1ff;
+    box-shadow: 0 0 12px rgba(116, 139, 255, 0.42);
+}
+
+.evaluation-version__option input:checked + .evaluation-version__radio::after {
+    transform: scale(1);
+}
+
+.evaluation-version__option:focus-within {
+    outline: 2px solid #8498ff;
+    outline-offset: 3px;
+}
+
+.evaluation-version__copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.evaluation-version__copy strong {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    color: #e5eaff;
+    font-size: 0.75rem;
+}
+
+.evaluation-version__copy small {
+    color: #8d9ab2;
+    font-size: 0.65rem;
+    line-height: 1.45;
+}
+
+.evaluation-version__copy em {
+    padding: 2px 6px;
+    border: 1px solid rgba(161, 126, 255, 0.3);
+    border-radius: 999px;
+    background: rgba(108, 79, 209, 0.18);
+    color: #c5afff;
+    font-size: 0.58rem;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
 .evaluation-sidebar__rating-row {
     display: flex;
     gap: 9px;
@@ -2294,6 +2415,237 @@ body:has(#evaluationSection:target) #previewSection {
 #evaluationMessage:empty,
 #projectLoadMessage:empty {
     display: none;
+}
+
+.snake-dialog {
+    position: fixed;
+    width: min(500px, calc(100vw - 28px));
+    max-width: none;
+    max-height: min(94vh, 760px);
+    padding: 0;
+    overflow: auto;
+    border: 1px solid rgba(116, 139, 255, 0.3);
+    border-radius: 24px;
+    background:
+        radial-gradient(ellipse at 50% 0, rgba(116, 139, 255, 0.15), transparent 55%),
+        linear-gradient(145deg, #111d35, #0a1020 75%);
+    color: #f4f6ff;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.62), 0 0 70px rgba(116, 139, 255, 0.14);
+}
+
+.snake-dialog::backdrop {
+    background: rgba(3, 7, 16, 0.82);
+    backdrop-filter: blur(9px);
+}
+
+.snake-dialog[open] {
+    animation: publish-dialog-in 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.snake-dialog__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px clamp(16px, 5vw, 28px) 24px;
+    text-align: center;
+}
+
+.snake-dialog__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(190, 208, 234, 0.12);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    color: #aab7cb;
+    font: inherit;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.snake-dialog__eyebrow {
+    margin: 0 0 8px;
+    color: #9eacff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+}
+
+.snake-dialog h2 {
+    font-size: clamp(22px, 6vw, 28px);
+    letter-spacing: -0.04em;
+}
+
+.snake-dialog__instructions {
+    max-width: 370px;
+    margin: 8px 0 14px;
+    color: #aab8cc;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.snake-dialog__score {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    margin-bottom: 10px;
+    color: #aab8cc;
+    font-size: 14px;
+}
+
+.snake-dialog__score strong {
+    color: #dfe5ff;
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+}
+
+.snake-dialog__score span {
+    color: #7888ba;
+    font-size: 12px;
+}
+
+.snake-board {
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 380px);
+    aspect-ratio: 1;
+    gap: 2px;
+    padding: 7px;
+    border: 1px solid rgba(116, 139, 255, 0.26);
+    border-radius: 13px;
+    background:
+        linear-gradient(rgba(116, 139, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(116, 139, 255, 0.045) 1px, transparent 1px),
+        #080e1c;
+    background-size: 5% 5%;
+    box-shadow: inset 0 0 28px rgba(62, 84, 177, 0.12), 0 12px 38px rgba(0, 0, 0, 0.28);
+}
+
+.snake-board__row {
+    display: flex;
+    flex: 1 1 0;
+    min-height: 0;
+    gap: 2px;
+}
+
+.snake-board__cell {
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: 3px;
+    background: rgba(121, 143, 207, 0.055);
+}
+
+.snake-board__cell--snake {
+    background: linear-gradient(135deg, #5268d9, #748bff);
+    box-shadow: 0 0 8px rgba(116, 139, 255, 0.45);
+}
+
+.snake-board__cell--head {
+    border-radius: 5px;
+    background: linear-gradient(135deg, #e1e6ff, #8fa1ff);
+    box-shadow: 0 0 13px rgba(143, 161, 255, 0.9);
+}
+
+.snake-board__cell--food {
+    border-radius: 50%;
+    background: #c1a5ff;
+    box-shadow: 0 0 13px rgba(161, 126, 255, 0.85);
+    animation: snake-food-pulse 800ms ease-in-out infinite alternate;
+}
+
+.snake-dialog__status {
+    min-height: 20px;
+    margin: 10px 0 8px;
+    color: #aab8cc;
+    font-size: 12px;
+}
+
+.snake-dialog[data-state="over"] .snake-dialog__status {
+    color: #ff9aa7;
+}
+
+.snake-dialog[data-state="won"] .snake-dialog__status {
+    color: #aebaff;
+}
+
+.snake-controls {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    margin: 3px 0 12px;
+}
+
+.snake-controls__row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.snake-controls__row--center {
+    justify-content: center;
+}
+
+.snake-controls button {
+    width: 46px;
+    height: 42px;
+    border: 1px solid rgba(116, 139, 255, 0.35);
+    border-radius: 10px;
+    background: #172342;
+    color: #e1e6ff;
+    font: inherit;
+    font-size: 20px;
+    touch-action: manipulation;
+}
+
+.snake-controls button:active {
+    background: #5268d9;
+}
+
+.snake-dialog__actions {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+}
+
+.snake-dialog__restart,
+.snake-dialog__cancel {
+    min-height: 42px;
+    padding: 0 18px;
+    border: 1px solid rgba(116, 139, 255, 0.32);
+    border-radius: 10px;
+    background: rgba(116, 139, 255, 0.1);
+    color: #dfe5ff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.snake-dialog__restart:hover,
+.snake-dialog__cancel:hover {
+    background: rgba(116, 139, 255, 0.2);
+}
+
+.snake-dialog button:focus-visible {
+    outline: 2px solid #aebaff;
+    outline-offset: 3px;
+}
+
+@media (pointer: coarse) {
+    .snake-controls {
+        display: flex;
+    }
+}
+
+@keyframes snake-food-pulse {
+    from { transform: scale(0.72); filter: brightness(0.9); }
+    to { transform: scale(1); filter: brightness(1.35); }
 }
 
 .publish-success {

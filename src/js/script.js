@@ -55,6 +55,126 @@ if (byId('publishSuccessDialog')) {
   dialog.querySelectorAll('[data-close-publish-success]').forEach((button) => button.addEventListener('click', () => dialog.close()))
   dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close() })
 }
+let snakePassForm = null, pendingPublish = null, startSnakeGame = () => {}
+if (byId('snakeDialog')) {
+  const dialog = byId('snakeDialog'), board = byId('snakeBoard'), scoreLabel = byId('snakeScore'), status = byId('snakeStatus'), restartButton = dialog.querySelector('[data-restart-snake]')
+  const boardSize = 20, targetScore = 10, cells = [], directions = {
+    up: { x: 0, y: -1 },
+    right: { x: 1, y: 0 },
+    down: { x: 0, y: 1 },
+    left: { x: -1, y: 0 }
+  }
+  let snake = [], food = null, direction = directions.right, nextDirection = direction, score = 0, timer = null, gameOver = false, turnQueued = false
+  for (let y = 0; y < boardSize; y += 1) {
+    const row = document.createElement('div')
+    row.className = 'snake-board__row'
+    row.setAttribute('role', 'row')
+    for (let x = 0; x < boardSize; x += 1) {
+      const cell = document.createElement('span')
+      cell.className = 'snake-board__cell'
+      cell.setAttribute('role', 'gridcell')
+      row.append(cell)
+      cells.push(cell)
+    }
+    board.append(row)
+  }
+  const render = () => {
+    cells.forEach((cell) => { cell.className = 'snake-board__cell' })
+    snake.forEach(({ x, y }, index) => cells[y * boardSize + x].classList.add(index === 0 ? 'snake-board__cell--head' : 'snake-board__cell--snake'))
+    if (food) cells[food.y * boardSize + food.x].classList.add('snake-board__cell--food')
+  }
+  const placeFood = () => {
+    const available = []
+    for (let y = 0; y < boardSize; y += 1) {
+      for (let x = 0; x < boardSize; x += 1) {
+        if (!snake.some((part) => part.x === x && part.y === y)) available.push({ x, y })
+      }
+    }
+    return available[Math.floor(Math.random() * available.length)]
+  }
+  const setDirection = (candidate) => {
+    if (turnQueued || (candidate.x === direction.x && candidate.y === direction.y)) return
+    if (candidate.x !== -direction.x || candidate.y !== -direction.y) {
+      nextDirection = candidate
+      turnQueued = true
+    }
+  }
+  const stop = () => { window.clearInterval(timer); timer = null }
+  const finish = () => {
+    stop()
+    gameOver = true
+    dialog.dataset.state = 'over'
+    status.textContent = 'Vége a játéknak. Próbáld újra, hogy elérd a 10 pontot!'
+    restartButton.hidden = false
+  }
+  const win = () => {
+    stop()
+    dialog.dataset.state = 'won'
+    status.textContent = 'Szép munka! Az értékelés közzététele most már folytatódik.'
+    dialog.close()
+    const submission = pendingPublish
+    pendingPublish = null
+    if (submission?.form.isConnected) {
+      snakePassForm = submission.form
+      submission.form.requestSubmit(submission.button)
+    }
+  }
+  const tick = () => {
+    direction = nextDirection
+    turnQueued = false
+    const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y }
+    if (head.x < 0 || head.x >= boardSize || head.y < 0 || head.y >= boardSize) return finish()
+    const eating = head.x === food.x && head.y === food.y
+    const body = eating ? snake : snake.slice(0, -1)
+    if (body.some((part) => part.x === head.x && part.y === head.y)) return finish()
+    snake.unshift(head)
+    if (eating) {
+      score += 1
+      scoreLabel.textContent = String(score)
+      if (score >= targetScore) {
+        render()
+        return win()
+      }
+      food = placeFood()
+    } else {
+      snake.pop()
+    }
+    render()
+  }
+  const start = () => {
+    stop()
+    snake = [{ x: 9, y: 10 }, { x: 8, y: 10 }, { x: 7, y: 10 }]
+    direction = nextDirection = directions.right
+    turnQueued = false
+    score = 0
+    gameOver = false
+    food = placeFood()
+    scoreLabel.textContent = '0'
+    status.textContent = 'A játék indul!'
+    restartButton.hidden = true
+    dialog.dataset.state = 'playing'
+    render()
+    timer = window.setInterval(tick, 125)
+  }
+  startSnakeGame = start
+  const directionKeys = { ArrowUp: 'up', w: 'up', W: 'up', ArrowRight: 'right', d: 'right', D: 'right', ArrowDown: 'down', s: 'down', S: 'down', ArrowLeft: 'left', a: 'left', A: 'left' }
+  document.addEventListener('keydown', (event) => {
+    if (!dialog.open || gameOver) return
+    const keyDirection = directionKeys[event.key]
+    if (!keyDirection) return
+    event.preventDefault()
+    setDirection(directions[keyDirection])
+  })
+  dialog.querySelectorAll('[data-snake-direction]').forEach((button) => {
+    button.addEventListener('click', () => setDirection(directions[button.dataset.snakeDirection]))
+  })
+  dialog.querySelectorAll('[data-close-snake]').forEach((button) => button.addEventListener('click', () => dialog.close()))
+  dialog.querySelector('[data-restart-snake]').addEventListener('click', start)
+  dialog.addEventListener('close', stop)
+  dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close() })
+  dialog.addEventListener('cancel', stop)
+  dialog.addEventListener('close', () => { if (dialog.dataset.state !== 'won') pendingPublish = null })
+}
 if (byId('currentUsername')) {
   byId('currentUsername').textContent = user.username || 'Felhasználó'; document.querySelector('.sidebar__content__footer .avatar').textContent = (user.username || 'F').slice(0, 1).toLocaleUpperCase('hu')
 }
@@ -66,6 +186,8 @@ document.addEventListener('submit', async (event) => {
   event.preventDefault()
   const status = form.querySelector('[role="status"]'), button = event.submitter || form.querySelector('[type="submit"]')
   const data = Object.fromEntries(new FormData(form, event.submitter).entries())
+  const usesAiVersion = form.querySelector('[name="evaluationVersion"]:checked')?.value === 'ai'
+  delete data.evaluationVersion
   if (form.id === 'recoverCompleteForm' && data.password !== data.confirmPassword) return message(status, 'A két jelszó nem egyezik.', true)
   delete data.confirmPassword
   if (form.id === 'registerForm') data.username = data.username.trim()
@@ -73,6 +195,17 @@ document.addEventListener('submit', async (event) => {
   if (data.published !== undefined) data.published = data.published === 'true'
   if (form.hasAttribute('data-evaluation') && data.published && ['grade', 'theme', 'design', 'animations', 'javascript'].some((key) => !data[key])) {
     return message(status, 'Közzététel előtt válassz pontszámot minden kritériumhoz és érdemjegyet.', true)
+  }
+  const passedSnake = snakePassForm === form
+  if (passedSnake) snakePassForm = null
+  if (form.hasAttribute('data-evaluation') && data.published && usesAiVersion && !passedSnake) {
+    const dialog = byId('snakeDialog')
+    if (!dialog) return message(status, 'A közzétételi játék nem tölthető be. Frissítsd az oldalt, és próbáld újra.', true)
+    pendingPublish = { form, button }
+    message(status, '')
+    dialog.showModal()
+    startSnakeGame()
+    return
   }
   button.disabled = true
   message(status, '')
