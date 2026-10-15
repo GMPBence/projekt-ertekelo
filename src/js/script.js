@@ -153,6 +153,22 @@ if (byId('evaluationForm') && requireAuth()) {
       catch { showError(Error('Adj meg érvényes http vagy https webcímet.')) }
     })
     byId('refreshButton').addEventListener('click', () => { if (frame.src !== 'about:blank') frame.src = frame.src })
+    const previewWidth = byId('previewWidth'), previewWidthValue = byId('previewWidthValue')
+    const resizePreview = () => {
+      const maxWidth = Math.max(320, Math.floor(viewer.clientWidth))
+      const wasFullWidth = Number(previewWidth.value) >= Number(previewWidth.max)
+      previewWidth.max = String(maxWidth)
+      if (wasFullWidth || Number(previewWidth.value) > maxWidth) previewWidth.value = String(maxWidth)
+      const width = Number(previewWidth.value)
+      const isFullWidth = width >= maxWidth
+      viewer.classList.toggle('project-viewer--resized', !isFullWidth)
+      frame.style.width = isFullWidth ? '' : `${width}px`
+      frame.style.flex = isFullWidth ? '' : '0 0 auto'
+      previewWidthValue.value = isFullWidth ? 'Teljes' : `${width} px`
+    }
+    previewWidth.addEventListener('input', resizePreview)
+    window.addEventListener('resize', resizePreview)
+    resizePreview()
     byId('fullscreenButton').addEventListener('click', async () => {
       try { if (document.fullscreenElement) await document.exitFullscreen(); else await viewer.requestFullscreen() }
       catch { showError(Error('A teljes képernyős nézet nem érhető el.')) }
