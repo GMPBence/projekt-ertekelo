@@ -82,10 +82,6 @@ if (byId('projectDialog')) {
     const dialog = byId('projectDialog')
     byId('openProjectDialog').addEventListener('click', () => dialog.showModal())
 
-    dialog.addEventListener('click', (event) => {
-        if (event.target === dialog) dialog.close()
-    })
-
     dialog.addEventListener('cancel', (event) => {
         event.preventDefault();
         dialog.close()
